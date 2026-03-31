@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Trophy, Award, BookOpen, Star, ExternalLink } from "lucide-react";
+import { Trophy, Award, BookOpen, Star, ExternalLink, type LucideIcon } from "lucide-react";
 import { awards, type Award as AwardType } from "@/data/awards";
 import CertificateModal from "@/components/CertificateModal";
 import CompetitionModal from "@/components/CompetitionModal";
@@ -10,7 +10,7 @@ import CompetitionModal from "@/components/CompetitionModal";
 const categoryConfig: Record<
   AwardType["category"],
   {
-    icon: React.ComponentType<{ size?: number; className?: string }>;
+    icon: LucideIcon;
     accent: string;       // text + border color
     glow: string;         // glow shadow
     bg: string;           // icon bg
