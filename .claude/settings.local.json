@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --no-git)",
+      "Bash(npm --version)",
+      "Bash(export PATH=\"$PATH:/usr/local/bin:/opt/homebrew/bin:/usr/bin\")",
+      "Read(//opt/homebrew/bin/**)",
+      "Read(//usr/local/bin/**)",
+      "Read(//Users/lcd/**)",
+      "Bash(source ~/.zshrc)",
+      "Bash(source ~/.zprofile)",
+      "Bash(sips -s format jpeg \"/Users/lcd/Desktop/GitHub Projetcs/Portfolio/TruHacks26/3rd TruHacks26.HEIC\" --out \"/Users/lcd/Desktop/GitHub Projetcs/Portfolio/public/truhacks/award-photo.jpg\")",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(lsof -ti:3000)",
+      "Bash(ls ~/Downloads/*.jpg ~/Downloads/*.png)",
+      "Bash(find /tmp -name *.jpg -o -name *.png -o -name *.jpeg)",
+      "Bash(find ~/Desktop -maxdepth 2 -name *.jpg -o -name *.jpeg)",
+      "Bash(grep -E \"\\\\.\\(jpg|jpeg|png|heic|webp\\)$\")",
+      "Bash(npm run:*)"
+    ]
+  }
+}

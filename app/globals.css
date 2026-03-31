@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Google Fonts ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ── CSS Custom Properties ────────────────────────────────── */
+:root {
+  --accent:        #38bdf8;
+  --accent-dim:    rgba(56,189,248,0.15);
+  --accent-glow:   rgba(56,189,248,0.35);
+  --amber:         #f59e0b;
+  --amber-dim:     rgba(245,158,11,0.15);
+}
+
+/* Dark mode tokens */
+.dark {
+  --bg-primary:    #020817;
+  --bg-secondary:  #030e1f;
+  --text-heading:  #f1f5f9;
+  --text-body:     #94a3b8;
+  --text-muted:    #475569;
+  --card-bg:       rgba(255, 255, 255, 0.04);
+  --card-border:   rgba(255, 255, 255, 0.07);
+  --scrollbar-track: #020817;
+}
+
+/* Light mode tokens */
+:root:not(.dark) {
+  --bg-primary:    #d6e1ed;
+  --bg-secondary:  #c8d6e6;
+  --text-heading:  #0f172a;
+  --text-body:     #1e293b;
+  --text-muted:    #475569;
+  --card-bg:       rgba(255, 255, 255, 0.96);
+  --card-border:   rgba(100, 116, 139, 0.28);
+  --scrollbar-track: #c8d6e6;
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "DM Sans", sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-body);
+    @apply antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Syne", sans-serif;
+    letter-spacing: -0.02em;
+    color: var(--text-heading);
+  }
+
+  /* Tailwind's text-white stays white — but headings use CSS var above.
+     These overrides fix explicit text-white used in card titles / badges
+     so they remain readable in light mode. */
+  :root:not(.dark) .text-white {
+    color: var(--text-heading) !important;
+  }
+  :root:not(.dark) .text-slate-200,
+  :root:not(.dark) .text-slate-300 {
+    color: #334155 !important;
+  }
+  :root:not(.dark) .text-slate-400 {
+    color: #475569 !important;
+  }
+  :root:not(.dark) .text-slate-500 {
+    color: #64748b !important;
+  }
+  :root:not(.dark) .text-slate-600 {
+    color: #94a3b8 !important;
+  }
+  :root:not(.dark) .text-slate-700 {
+    color: #cbd5e1 !important;
+  }
+  /* Keep accent text as-is — sky/amber/emerald read fine in light mode */
+
+  /* Skill tags use hardcoded dark Tailwind classes — override them in light mode */
+  :root:not(.dark) .bg-slate-800\/40  { background-color: rgba(255, 255, 255, 0.70) !important; }
+  :root:not(.dark) .border-slate-700\/60 { border-color: rgba(100, 116, 139, 0.35) !important; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar       { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--scrollbar-track); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent-dim);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+}
+
+/* ── Utilities ────────────────────────────────────────────── */
+@layer utilities {
+
+  /* ── Section backgrounds (replaces hardcoded bg-[#020817]) ── */
+  .section-primary   { background-color: var(--bg-primary); }
+  .section-secondary { background-color: var(--bg-secondary); }
+
+  /* ── Dot-grid (toned down in light mode via CSS var opacity) ── */
+  .bg-dot-grid {
+    background-image: radial-gradient(circle, rgba(56,189,248,0.10) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  :root:not(.dark) .bg-dot-grid {
+    background-image: radial-gradient(circle, rgba(56,189,248,0.20) 1px, transparent 1px);
+  }
+
+  /* ── Animated gradient text ── */
+  .text-gradient {
+    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 40%, #38bdf8 80%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientX 6s ease infinite;
+  }
+
+  /* ── Glass card — matches section background with minimal elevation ── */
+  .card-glass {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* ── Cyan glow ring on hover ── */
+  .hover-glow {
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .hover-glow:hover {
+    box-shadow: 0 0 0 1px rgba(56,189,248,0.35), 0 4px 32px rgba(56,189,248,0.12);
+    border-color: rgba(56,189,248,0.35) !important;
+  }
+
+  /* ── Section label (monospace tag) ── */
+  .section-label {
+    font-family: "DM Sans", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  :root:not(.dark) .section-label {
+    color: #0284c7; /* sky-600 — readable on light bg */
+  }
+
+  /* ── Cyan underline accent ── */
+  .accent-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .accent-underline::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 100%; height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+    opacity: 0.6;
+  }
+}
+
+/* ── Keyframe animations ──────────────────────────────────── */
+@keyframes gradientX {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+@keyframes fadeUp {
+  0%   { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(400%); }
+}
