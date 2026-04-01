@@ -70,7 +70,7 @@ export default function Skills() {
             Skills & Tools
           </h2>
           <p className="text-slate-500 text-sm mt-2 max-w-md">
-            Technologies I use daily — hover any skill to learn more.
+            Technologies I use daily.
           </p>
         </motion.div>
 

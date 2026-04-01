@@ -73,6 +73,7 @@ export default function Awards() {
           <h2 className="font-sans font-bold text-3xl sm:text-4xl text-white">
             Honors & Awards
           </h2>
+          <p className="text-slate-500 text-sm mt-2">Click on each card for more details.</p>
         </motion.div>
 
         {/* Grid */}

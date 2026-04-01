@@ -199,7 +199,7 @@ export default function Hero() {
                   src="/images/avatar.jpg"
                   alt="Dung Chi Le"
                   fill
-                  className="object-contain"
+                  className="object-cover object-top"
                   priority
                 />
               </div>
