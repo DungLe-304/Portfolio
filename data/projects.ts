@@ -15,8 +15,10 @@ export const projects: Project[] = [
     id: 1,
     title: "SAT & Graduation Rate Analysis",
     description:
-      "Engineered a Python data pipeline to convert raw Excel into a cleaned analysis dataset and SQL seed script (CREATE TABLE + INSERT) for 47 institutions. Conducted comparative statistical analysis — correlation, OLS regression, and hypothesis testing — across 20 public and 27 private institutions; found stronger association in public (r=0.701, p<0.001) vs private (r=0.572, p<0.01) schools with distinct slope coefficients (0.104 vs 0.062). Built a reproducible workflow (Jupyter + Git) and tested an ANCOVA-style interaction model (interaction p=0.175); predicted Truman at SAT≈1190 (72.3% vs 76%, 3.7 pp error).",
-    techStack: ["Python", "SQL", "Pandas", "Statsmodels", "SciPy", "Jupyter", "Git"],
+      "Engineered an end-to-end Python analytics pipeline (pandas, SciPy, Statsmodels) on 47 U.S. colleges — converting raw Excel into a cleaned dataset, a SQL seed script, and 7 analytical SQL queries (sector statistics, SAT band breakdowns, outperformer detection, residual analysis, and imputation sensitivity checks). " +
+      "Conducted comparative statistical analysis using Pearson correlation, OLS regression, and ANCOVA-style interaction modeling across 20 public and 27 private institutions; identified a significantly stronger SAT–graduation association in public schools (r=0.701, p<0.001) vs. private (r=0.572, p<0.01) with distinct slope coefficients (0.104 vs. 0.062); interaction term p=0.175 (non-significant). " +
+      "Built a fully reproducible analytical workflow with regression diagnostics (Residuals vs. Fitted, Q-Q plot, Cook's Distance), an interactive Plotly scatter chart with hover tooltips, a sensitivity analysis excluding imputed SAT records, and a predict_grad_rate() function with extrapolation warnings — all documented in a structured methodology writeup.",
+    techStack: ["Python", "SQL", "Pandas", "Statsmodels", "SciPy", "Plotly", "Jupyter", "Git"],
     githubUrl: "https://github.com/DungLe-304/graduation-rates-sat-analysis",
     demoUrl: "",
     imageUrl: "/images/scatter_with_fits.png",
