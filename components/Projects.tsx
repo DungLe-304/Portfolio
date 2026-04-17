@@ -45,7 +45,7 @@ export default function Projects() {
               {/* Visual pane */}
               <div className="relative lg:w-2/5 h-56 lg:h-auto flex-shrink-0 bg-gradient-to-br from-sky-950 to-[#020817] overflow-hidden">
                 {featuredProject.imageUrl ? (
-                  <Image src={featuredProject.imageUrl} alt={featuredProject.title} fill className="object-cover" priority={fi === 0} />
+                  <Image src={featuredProject.imageUrl} alt={featuredProject.title} fill className="object-contain p-4" priority={fi === 0} />
                 ) : (
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-8">
                     {/* Animated chart bars */}
@@ -85,7 +85,7 @@ export default function Projects() {
                   <h3 className="font-display font-bold text-xl sm:text-2xl text-white mb-3">
                     {featuredProject.title}
                   </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6 whitespace-pre-line">
                     {featuredProject.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-8">
