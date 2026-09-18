@@ -7,6 +7,9 @@ import { awards, type Award } from "@/data/awards";
 import CertificateModal from "@/components/modals/CertificateModal";
 import CompetitionModal from "@/components/modals/CompetitionModal";
 
+// Certifications have their own section
+const honors = awards.filter((a) => a.category !== "certification");
+
 export default function Awards() {
   const [certModal, setCertModal] = useState({ isOpen: false, title: "", issuer: "", certificateUrl: "" });
   const [competitionModal, setCompetitionModal] = useState<{ isOpen: boolean; award: Award | null }>({ isOpen: false, award: null });
@@ -27,7 +30,7 @@ export default function Awards() {
       lead="Select an entry to view the certificate or gallery."
     >
       <div className="grid gap-x-12 sm:grid-cols-2">
-        {awards.map((award, i) => {
+        {honors.map((award, i) => {
           const actionLabel = award.certificateUrl
             ? "View certificate"
             : award.gallery

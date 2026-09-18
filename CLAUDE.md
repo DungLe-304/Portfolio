@@ -21,7 +21,7 @@ src/components/ui/        # Shared primitives (Section, Reveal)
 src/data/                 # Static typed content arrays (site, education, experience, skills, projects, awards)
 src/styles/globals.css    # Tailwind entry + base styles
 src/types/                # Ambient type declarations
-public/images/            # avatar.jpg, projects/, awards/, logos/
+public/images/            # avatar.jpg, projects/, awards/, certifications/, logos/
 public/documents/         # Certificates and pitch deck PDFs
 public/cv.pdf             # Downloadable resume (path is linked externally — keep it)
 .claude/skills/           # Claude Code skills (not part of the site)
@@ -34,7 +34,7 @@ public/cv.pdf             # Downloadable resume (path is linked externally — k
 - Static content/data lives in data/ as typed TypeScript arrays — never hardcode content in components
 - Tailwind utility classes preferred over @apply
 - Images use next/image for performance
-- Sections use id anchors for smooth scroll: #about, #skills, #projects, #awards, #contact
+- Sections use id anchors for smooth scroll: #about, #skills, #projects, #awards, #certifications, #contact
 - Dark mode supported via Tailwind `dark:` classes (toggled by adding `dark` class to <html>)
 - All text, comments, and documentation must be in English
 

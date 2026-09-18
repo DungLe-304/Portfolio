@@ -11,6 +11,7 @@ interface CertificateModalProps {
   title: string;
   issuer: string;
   certificateUrl: string;
+  alt?: string;
 }
 
 export default function CertificateModal({
@@ -19,6 +20,7 @@ export default function CertificateModal({
   title,
   issuer,
   certificateUrl,
+  alt,
 }: CertificateModalProps) {
   // Close on Escape key
   useEffect(() => {
@@ -87,7 +89,7 @@ export default function CertificateModal({
             {/* Viewer — image or PDF */}
             <div className="relative min-h-0 flex-1 bg-ground-alt">
               {isImage ? (
-                <Image src={certificateUrl} alt={title} fill sizes="100vw" className="object-contain p-4" />
+                <Image src={certificateUrl} alt={alt ?? title} fill sizes="100vw" className="object-contain p-4" />
               ) : (
                 <iframe
                   src={`${certificateUrl}#toolbar=0&navpanes=0`}
