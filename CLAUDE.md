@@ -52,3 +52,6 @@ npm run dev       # start dev server at localhost:3000
 npm run build     # production build
 npm run lint      # run ESLint
 ```
+
+## Coding Guidelines
+@.claude/karpathy-guidelines.md
