@@ -13,12 +13,21 @@ Purpose: internship applications.
 
 ## Project Structure
 ```
-app/              # Next.js App Router pages and layout
-components/       # React components (one file per section)
-data/             # Static typed content arrays
-public/images/    # Avatar, project screenshots
-public/cv.pdf     # Downloadable resume
+src/app/                  # Next.js App Router layout + page
+src/components/layout/    # Navbar
+src/components/sections/  # One file per page section (Hero, About, Skills, ...)
+src/components/modals/    # Certificate / competition pop-ups
+src/components/ui/        # Shared primitives (Section, Reveal)
+src/data/                 # Static typed content arrays (site, education, experience, skills, projects, awards)
+src/styles/globals.css    # Tailwind entry + base styles
+src/types/                # Ambient type declarations
+public/images/            # avatar.jpg, projects/, awards/, logos/
+public/documents/         # Certificates and pitch deck PDFs
+public/cv.pdf             # Downloadable resume (path is linked externally — keep it)
+.claude/skills/           # Claude Code skills (not part of the site)
 ```
+
+`@/*` resolves to `src/*`.
 
 ## Conventions
 - All components use TypeScript with explicit prop interfaces
