@@ -22,8 +22,7 @@ src/data/                 # Static typed content arrays (site, education, experi
 src/styles/globals.css    # Tailwind entry + base styles
 src/types/                # Ambient type declarations
 public/images/            # avatar.jpg, projects/, awards/, certifications/, logos/
-public/documents/         # Certificates and pitch deck PDFs
-public/cv.pdf             # Downloadable resume (path is linked externally — keep it)
+public/documents/         # Resume (dung-le-resume.pdf), certificates, pitch deck PDFs
 .claude/skills/           # Claude Code skills (not part of the site)
 ```
 
@@ -52,7 +51,7 @@ public/cv.pdf             # Downloadable resume (path is linked externally — k
 - Email: lechidung204@gmail.com
 - GitHub: https://github.com/DungLe-304
 - LinkedIn: https://linkedin.com/in/dung-le-data304
-- CV: /cv.pdf (DungLe'sResume.pdf copied to public/cv.pdf)
+- CV: /documents/dung-le-resume.pdf (referenced via `site.cvUrl` in src/data/site.ts)
 
 ## Running the Project
 ```bash

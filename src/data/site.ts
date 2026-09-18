@@ -4,7 +4,7 @@ export const site = {
   email: "lechidung204@gmail.com",
   github: "https://github.com/DungLe-304",
   linkedin: "https://linkedin.com/in/dung-le-data304",
-  cvUrl: "/cv.pdf",
+  cvUrl: "/documents/dung-le-resume.pdf",
   avatarUrl: "/images/avatar.jpg",
 };
 
