@@ -44,7 +44,9 @@ export default function Awards() {
                 <p className="mt-1 text-sm text-ink-secondary">
                   {award.issuer} · {award.date}
                 </p>
-                <p className="mt-3 text-base leading-relaxed text-ink-secondary">{award.description}</p>
+                {award.description && (
+                  <p className="mt-3 text-base leading-relaxed text-ink-secondary">{award.description}</p>
+                )}
                 {actionLabel && (
                   <button
                     onClick={() => openAward(award)}

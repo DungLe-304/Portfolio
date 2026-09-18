@@ -50,7 +50,7 @@ public/documents/         # Resume (dung-le-resume.pdf), certificates, pitch dec
 - University: Truman State University
 - Email: lechidung204@gmail.com
 - GitHub: https://github.com/DungLe-304
-- LinkedIn: https://linkedin.com/in/dung-le-data304
+- LinkedIn: https://www.linkedin.com/in/dung-le430
 - CV: /documents/dung-le-resume.pdf (referenced via `site.cvUrl` in src/data/site.ts)
 
 ## Running the Project

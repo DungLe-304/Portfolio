@@ -3,7 +3,7 @@ export interface Award {
   title: string;
   issuer: string;
   date: string;
-  description: string;
+  description?: string;
   category: "competition" | "scholarship" | "certification" | "recognition";
   // Certificate pop-up (for certifications)
   certificateUrl?: string;
@@ -22,6 +22,13 @@ export interface Award {
 
 export const awards: Award[] = [
   {
+    id: 6,
+    title: "Vice President / Risk Manager, Truman ASA Chapter",
+    issuer: "Truman State University",
+    date: "April 2026",
+    category: "recognition",
+  },
+  {
     id: 1,
     title: "President's List",
     issuer: "Truman State University",
@@ -33,7 +40,7 @@ export const awards: Award[] = [
   },
   {
     id: 2,
-    title: "3rd Place — TruHacks x Boeing 2026",
+    title: "3rd Place, TruHacks x Boeing 2026 (Hackathon Business Category)",
     issuer: "TruHacks Hackathon",
     date: "March 2026",
     description:
@@ -57,7 +64,7 @@ export const awards: Award[] = [
     id: 3,
     title: "Anthropic Claude Code in Action",
     issuer: "Anthropic",
-    date: "March 2025",
+    date: "March 2026",
     description:
       "Certified for proficiency in using Claude Code for AI-assisted software development workflows.",
     category: "certification",

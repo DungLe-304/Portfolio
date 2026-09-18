@@ -8,7 +8,7 @@ export interface Education {
 
 export const education: Education[] = [
   {
-    degree: "B.S. in Data Science",
+    degree: "B.S. in Data Science, Minor in Mathematics",
     school: "Truman State University",
     location: "Kirksville, MO",
     period: "Aug 2024 – Present",

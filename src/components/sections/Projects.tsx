@@ -30,6 +30,7 @@ export default function Projects() {
 
               <div>
                 <h3 className="text-2xl font-semibold tracking-tight md:text-3xl">{project.title}</h3>
+                <p className="mt-1 text-sm text-ink-secondary">{project.date}</p>
                 <p className="mt-4 whitespace-pre-line text-base leading-relaxed text-ink-secondary">
                   {project.description}
                 </p>
