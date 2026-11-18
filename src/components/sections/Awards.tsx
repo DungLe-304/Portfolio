@@ -34,7 +34,9 @@ export default function Awards() {
           const actionLabel = award.certificateUrl
             ? "View certificate"
             : award.gallery
-              ? "View gallery & pitch deck"
+              ? award.gallery.presentationUrl
+                ? "View gallery & pitch deck"
+                : "View gallery"
               : null;
 
           return (

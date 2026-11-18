@@ -22,6 +22,26 @@ export interface Award {
 
 export const awards: Award[] = [
   {
+    id: 7,
+    title: "Participant, HackPrinceton Fall 2026",
+    issuer: "Princeton University",
+    date: "November 2026",
+    description:
+      "Built RoofWatt — an AI agent that ranks commercial rooftops by solar payback and drafts a proposal to the building owner. Entered in the Sustainability, CoStar, Amazon, and LangChain tracks.",
+    category: "competition",
+    gallery: {
+      images: ["/images/projects/roofwatt-overview.png"],
+      repoUrl: "https://github.com/DungLe-304/roofwatt",
+      projectName: "RoofWatt",
+      projectTagline: "Find the roofs where solar pays",
+      summary:
+        "RoofWatt screens all 185 Houston office buildings in the CoStar extract, estimates " +
+        "each roof's energy, savings, payback, and CO₂ avoided with NREL PVWatts and published " +
+        "cost and tariff data, ranks them in code, and shows the top 10 on a map with Vexcel " +
+        "aerial imagery — then drafts a pitch letter to the owner of the best building.",
+    },
+  },
+  {
     id: 6,
     title: "Vice President / Risk Manager, Truman ASA Chapter",
     issuer: "Truman State University",
