@@ -12,6 +12,19 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 3,
+    title: "RoofWatt — AI Solar Rooftop Screener (HackPrinceton Fall 2026)",
+    date: "November 2026",
+    description:
+      "Built an AI agent with LangChain deepagents that ranks commercial rooftops by solar economics from a plain-English request — it plans the work, calls 7 tools (building search, roof analysis, solar estimate, financials, ranking, aerial imagery), and drafts a proposal letter to the owner of the best building.\n" +
+      "Screened all 185 Houston office buildings in the CoStar extract (171 large enough to rank) in about a minute, combining CoStar building records, NREL PVWatts v8 energy estimates, EIA electricity prices, LBNL installed costs, the 30% federal ITC, and EPA eGRID emissions to compute annual kWh, savings, payback, and CO₂ avoided per building.\n" +
+      "Shipped a Streamlit app with a live tool trace, ranked table, 2D map, Vexcel aerial roof images, a what-if panel that re-ranks without re-calling the agent, and switchable Cloud (Gemini) / Local (Ollama) AI engines — every number in the answer comes from a tool, not the language model. Entered in the Sustainability, CoStar, Amazon, and LangChain tracks.",
+    techStack: ["Python", "LangChain deepagents", "Gemini", "Ollama", "Streamlit", "pandas", "pydeck", "NREL PVWatts API", "pytest"],
+    githubUrl: "https://github.com/DungLe-304/roofwatt",
+    demoUrl: "https://roofwatt.streamlit.app",
+    imageUrl: "/images/projects/roofwatt-overview.png",
+  },
+  {
     id: 1,
     title: "SAT & Graduation Rate Analysis",
     date: "December 2025",
