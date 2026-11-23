@@ -3,6 +3,7 @@ import Hero from "@/components/sections/Hero";
 import Highlights from "@/components/sections/Highlights";
 import Experience from "@/components/sections/Experience";
 import Skills from "@/components/sections/Skills";
+import Leadership from "@/components/sections/Leadership";
 import Projects from "@/components/sections/Projects";
 import Awards from "@/components/sections/Awards";
 import Certifications from "@/components/sections/Certifications";
@@ -17,8 +18,9 @@ export default function Home() {
         <Hero />
         <Highlights />
         <Experience />
-        <Skills />
         <Projects />
+        <Skills />
+        <Leadership />
         <Awards />
         <Certifications />
         <Contact />

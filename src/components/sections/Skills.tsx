@@ -1,24 +1,27 @@
-import Section from "@/components/ui/Section";
+import ReportSection from "@/components/ui/ReportSection";
 import Reveal from "@/components/ui/Reveal";
-import { skillCategories } from "@/data/skills";
+import { resume } from "@/content/resume";
 
 export default function Skills() {
   return (
-    <Section id="skills" bg="alt" title="Skills" lead="Technologies I use daily.">
-      <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-        {skillCategories.map((cat, i) => (
-          <Reveal key={cat.category} delay={i * 0.05}>
-            <h3 className="mb-4 text-sm font-semibold">{cat.category}</h3>
+    <ReportSection id="skills" label="Skills">
+      <Reveal>
+        {resume.skills.map((group) => (
+          <div
+            key={group.name}
+            className="grid gap-3 border-b border-rule py-5 md:grid-cols-[232px_1fr] md:items-baseline md:gap-0 md:py-6"
+          >
+            <h3 className="font-display text-xl font-normal tracking-[-0.01em] md:text-2xl">{group.name}</h3>
             <ul className="flex flex-wrap gap-2">
-              {cat.skills.map((skill) => (
-                <li key={skill} className="rounded-full bg-white px-3 py-1 text-sm">
-                  {skill}
+              {group.items.map((item) => (
+                <li key={item} className="border border-rule bg-surface px-2.5 py-1 font-mono text-[13px] leading-5">
+                  {item}
                 </li>
               ))}
             </ul>
-          </Reveal>
+          </div>
         ))}
-      </div>
-    </Section>
+      </Reveal>
+    </ReportSection>
   );
 }
