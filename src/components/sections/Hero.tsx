@@ -1,64 +1,56 @@
 import Image from "next/image";
-import { Download } from "lucide-react";
-import Reveal from "@/components/ui/Reveal";
-import { site, hero } from "@/data/site";
-
-const socials = [
-  { href: site.github, label: "GitHub" },
-  { href: site.linkedin, label: "LinkedIn" },
-  { href: `mailto:${site.email}`, label: "Email" },
-];
+import TextLink from "@/components/ui/TextLink";
+import { resume } from "@/content/resume";
 
 export default function Hero() {
+  const { name, alias, headline, availability, targetRoles, location, actions, portrait } = resume;
+  const [school, internship] = headline;
+
   return (
-    <section className="flex min-h-screen items-center justify-center px-6 pt-12">
-      <Reveal className="flex max-w-3xl flex-col items-center text-center">
-        <div className="relative mb-10 h-36 w-36 overflow-hidden rounded-full md:h-40 md:w-40">
-          <Image
-            src={site.avatarUrl}
-            alt={site.name}
-            fill
-            priority
-            sizes="160px"
-            className="object-cover object-top"
-          />
-        </div>
+    <section
+      aria-labelledby="hero-heading"
+      className="mx-auto w-full max-w-[1320px] px-5 pb-6 pt-9 sm:px-8 md:pb-8 md:pt-16 lg:px-14"
+    >
+      <h1
+        id="hero-heading"
+        className="whitespace-nowrap font-display text-[clamp(4.25rem,15.2vw,13.5rem)] font-normal leading-[0.88] tracking-[-0.045em]"
+      >
+        {name}
+      </h1>
+      <p className="mt-4 font-display text-xl italic text-muted lg:text-3xl">a.k.a. {alias}</p>
 
-        <h1 className="text-5xl font-semibold tracking-tight md:text-7xl">{site.name}</h1>
-        <p className="mt-2 text-sm text-ink-secondary">Also known as {site.alias}</p>
-        <p className="mt-5 text-2xl text-ink-secondary md:text-3xl">{hero.tagline}</p>
-        <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-secondary md:text-xl">
-          {hero.bio}
+      <div className="mt-8 grid gap-7 md:mt-12 md:grid-cols-[120px_1fr] md:gap-9 lg:grid-cols-[140px_1fr_300px]">
+        <Image
+          src={portrait.src}
+          alt={portrait.alt}
+          width={portrait.width}
+          height={portrait.height}
+          priority
+          sizes="(min-width: 1024px) 140px, 120px"
+          className="aspect-[4/5] w-28 object-cover object-top grayscale sepia-[.18] md:w-full"
+        />
+        <p className="max-w-[21em] font-display text-[1.6rem] leading-[1.14] tracking-[-0.015em] lg:text-[2.5rem]">
+          {school}. <em className="text-accent">{internship}.</em>
         </p>
-
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
-          <a
-            href={site.cvUrl}
-            download
-            className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-hover"
-          >
-            <Download size={16} />
-            Download CV
-          </a>
-          <a href="#contact" className="text-sm font-medium text-accent hover:underline">
-            Contact me ›
-          </a>
+        <div className="grid content-start gap-3 text-[15px] text-muted md:col-start-2 lg:col-start-3">
+          <p>
+            {availability}: {targetRoles.join(", ")}.
+            <br />
+            {location}
+          </p>
+          <ul className="flex flex-wrap gap-x-4 font-medium text-ink">
+            {actions.map((action, index) => (
+              <li key={action.href}>
+                <TextLink
+                  link={action}
+                  download={index === 0 ? "DungLe_Resume.pdf" : undefined}
+                  className={index === 0 ? "text-accent" : ""}
+                />
+              </li>
+            ))}
+          </ul>
         </div>
-
-        <div className="mt-8 flex gap-1">
-          {socials.map(({ href, label }) => (
-            <a
-              key={label}
-              href={href}
-              target={href.startsWith("http") ? "_blank" : undefined}
-              rel="noopener noreferrer"
-              className="rounded-full px-3 py-2.5 text-sm text-ink-secondary transition-colors hover:text-ink"
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-      </Reveal>
+      </div>
     </section>
   );
 }

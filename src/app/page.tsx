@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
+import Highlights from "@/components/sections/Highlights";
 import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
@@ -14,6 +15,7 @@ export default function Home() {
       <Navbar name={resume.name} links={resume.nav} resumeLink={resume.actions[0]} />
       <main id="main">
         <Hero />
+        <Highlights />
         <About />
         <Skills />
         <Projects />
