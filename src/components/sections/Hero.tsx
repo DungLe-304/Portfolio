@@ -25,7 +25,7 @@ export default function Hero() {
           alt={portrait.alt}
           width={portrait.width}
           height={portrait.height}
-          priority
+          preload
           sizes="(min-width: 1024px) 140px, 120px"
           className="aspect-[4/5] w-28 object-cover object-top grayscale sepia-[.18] md:w-full"
         />
