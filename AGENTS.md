@@ -84,7 +84,7 @@ Read this before starting work. Before ending a session, overwrite the sections 
 Claude Code (`claude-fable-5-2`), 2026-11-23
 
 ## Current Objective
-The 2027 portfolio redesign is live on `main`. Five small polish fixes are on `redesign-2027`, awaiting owner approval to merge. Spec and plan are in `docs/superpowers/`.
+The 2027 portfolio redesign and its polish fixes are on `main`. Spec and plan are in `docs/superpowers/`.
 
 Owner decisions (2026-11-23):
 - Publish the owner's `DungLe_Resume.pdf` unchanged at `/documents/dung-le-resume.pdf`. Site pages show no phone number.
@@ -95,11 +95,11 @@ Owner decisions (2026-11-23):
 ## Completed
 - Upgraded the stack, rebuilt every section, added SEO assets, and removed legacy code and Framer Motion.
 - Independent branch review completed, with important findings fixed.
-- Live Lighthouse: 100 in all four categories on mobile and desktop.
-- Polish on `redesign-2027`: hash offset, nav landmark, live OS theme, toggle state, and an explicit resume link.
+- Live Lighthouse: 90+ in all four categories on mobile and desktop.
+- Polish: hash offset, nav landmark, live OS theme, toggle state, and an explicit resume link.
 
 ## Modified Files
-Polish changes are on `redesign-2027`; `main` has the prior release.
+All work is committed on `main`. No work is in progress.
 
 ## Known Issues
 1. **Resume PDF and site differ on two points.** The PDF says March 2025 and "significantly stronger." The site uses March 2026 and "not statistically significant."
@@ -108,6 +108,5 @@ Polish changes are on `redesign-2027`; `main` has the prior release.
 4. **Local settings are tracked.** `.claude/settings.local.json` holds permissions only.
 
 ## Immediate Next Steps
-1. Owner: approve merging the polish fixes from `redesign-2027` to `main`.
-2. Owner: check the live site in Safari, and confirm the LinkedIn and RoofWatt demo links.
-3. Owner: decide whether to update the two resume lines, then replace the PDF.
+1. Owner: check the live site in Safari, and confirm the LinkedIn and RoofWatt demo links.
+2. Owner: decide whether to update the two resume lines, then replace the PDF.
