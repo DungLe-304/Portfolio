@@ -14,10 +14,8 @@ const config: Config = {
         rule: token("rule"),
         "on-accent": token("on-accent"),
         chart: token("chart"),
-        ink: { DEFAULT: token("ink"), secondary: "#6e6e73" },
-        line: "#d2d2d7",
-        ground: { DEFAULT: "#ffffff", alt: "#f5f5f7" },
-        accent: { DEFAULT: token("accent"), hover: "#0077ed" },
+        ink: token("ink"),
+        accent: token("accent"),
       },
       fontFamily: {
         sans: ["var(--font-body)", "system-ui", "sans-serif"],
