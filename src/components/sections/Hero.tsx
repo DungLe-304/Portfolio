@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { Download, Github, Linkedin, Mail } from "lucide-react";
+import { Download } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import { site, hero } from "@/data/site";
 
 const socials = [
-  { href: site.github, icon: Github, label: "GitHub" },
-  { href: site.linkedin, icon: Linkedin, label: "LinkedIn" },
-  { href: `mailto:${site.email}`, icon: Mail, label: "Email" },
+  { href: site.github, label: "GitHub" },
+  { href: site.linkedin, label: "LinkedIn" },
+  { href: `mailto:${site.email}`, label: "Email" },
 ];
 
 export default function Hero() {
@@ -46,16 +46,15 @@ export default function Hero() {
         </div>
 
         <div className="mt-8 flex gap-1">
-          {socials.map(({ href, icon: Icon, label }) => (
+          {socials.map(({ href, label }) => (
             <a
               key={label}
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel="noopener noreferrer"
-              aria-label={label}
-              className="rounded-full p-2.5 text-ink-secondary transition-colors hover:text-ink"
+              className="rounded-full px-3 py-2.5 text-sm text-ink-secondary transition-colors hover:text-ink"
             >
-              <Icon size={20} />
+              {label}
             </a>
           ))}
         </div>

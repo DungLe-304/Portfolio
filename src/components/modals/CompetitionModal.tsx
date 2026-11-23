@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { X, FileText, Github, ChevronLeft, ChevronRight } from "lucide-react";
+import { X, FileText, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Award } from "@/data/awards";
 
@@ -22,9 +22,11 @@ export default function CompetitionModal({
   const images = gallery?.images ?? [];
 
   // Reset image index on open
-  useEffect(() => {
+  const [wasOpen, setWasOpen] = useState(isOpen);
+  if (isOpen !== wasOpen) {
+    setWasOpen(isOpen);
     if (isOpen) setActiveImage(0);
-  }, [isOpen]);
+  }
 
   // Escape key to close, arrows to navigate
   useEffect(() => {
@@ -185,7 +187,7 @@ export default function CompetitionModal({
                       rel="noopener noreferrer"
                       className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-line px-5 py-3 text-sm font-medium transition-colors hover:border-ink"
                     >
-                      <Github size={16} />
+                      <ExternalLink size={16} />
                       GitHub repository
                     </a>
                   )}

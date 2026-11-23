@@ -1,12 +1,12 @@
-import { Mail, Github, Linkedin } from "lucide-react";
+import { Mail, ExternalLink } from "lucide-react";
 import Section from "@/components/ui/Section";
 import Reveal from "@/components/ui/Reveal";
 import { site, contact } from "@/data/site";
 
 const links = [
   { label: "Email", value: site.email, href: `mailto:${site.email}`, icon: Mail },
-  { label: "GitHub", value: site.github.replace(/^https?:\/\//, ""), href: site.github, icon: Github },
-  { label: "LinkedIn", value: site.linkedin.replace(/^https?:\/\//, ""), href: site.linkedin, icon: Linkedin },
+  { label: "GitHub", value: site.github.replace(/^https?:\/\//, ""), href: site.github, icon: ExternalLink },
+  { label: "LinkedIn", value: site.linkedin.replace(/^https?:\/\//, ""), href: site.linkedin, icon: ExternalLink },
 ];
 
 export default function Contact() {
