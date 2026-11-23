@@ -18,7 +18,7 @@ Rebuild the portfolio so it matches the 2027 resume and helps Dung C. Le (a.k.a.
 
 - No blog, CMS, backend, analytics, or contact form.
 - No progress bars, percentage skill meters, or decorative charts built from invented data.
-- No phone number anywhere on the public site or in any published PDF.
+- No phone number in the site's pages. The downloadable resume is the owner's `DungLe_Resume.pdf`, unchanged.
 - No overclaiming. The SAT result must never read as a significant difference.
 - No file deletion without owner confirmation.
 

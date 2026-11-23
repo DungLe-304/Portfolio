@@ -81,42 +81,30 @@ When changing a skill or agent, update its counterpart in the same session.
 Read this before starting work. Before ending a session, overwrite the sections below so they describe the current state. Keep entries short, and leave history to git.
 
 ## Last Active Agent
-Claude Code (`claude-opus-5-5`), 2026-11-23
+Claude Code (`claude-fable-5-2`), 2026-11-23
 
 ## Current Objective
-Rebuild the portfolio to match the 2027 resume (`/Users/lcd/Downloads/Resume/Resume 2027/DungLe_Resume.tex`) on branch `redesign-2027`. Owner picked **Direction A, "Annual Report"** and approved `docs/superpowers/specs/2026-11-23-portfolio-redesign-design.md`. **Do not build site code until the owner approves `docs/superpowers/plans/2026-11-23-portfolio-redesign.md` and picks an execution method.**
+Rebuild the portfolio to match the 2027 resume on branch `redesign-2027`, using Direction A, "Annual Report". Spec: `docs/superpowers/specs/2026-11-23-portfolio-redesign-design.md`. Plan: `docs/superpowers/plans/2026-11-23-portfolio-redesign.md`. Part 1 above describes `main` until plan Task 10 updates it.
 
 Owner decisions (2026-11-23):
-- Publish only a phone-free resume PDF, built from a copy of the `.tex`. Leave the original untouched.
-- Show the Claude Code certificate as March 2026.
-- SAT copy: keep every number, and say the public-school correlation was higher but the difference was not significant.
+- Publish the owner's `DungLe_Resume.pdf` unchanged at `/documents/dung-le-resume.pdf`. Site pages show no phone number.
+- Site copy dates the Claude Code certificate March 2026 and says the SAT difference was not statistically significant.
 - Keep Walmart under "More projects," President's List, and SyncShift as the TruHacks link. Hide the Gemini certificate without deleting its files.
 - "Summer 2027" and "open to relocation" are correct. No graduation date was given, so omit it.
-- Upgrade to Next.js 16.4.6 and React 19. Replace Framer Motion with CSS.
 
 ## Completed
-- Earlier: rewrote `AGENTS.md`, reduced `CLAUDE.md` to an import, removed the contact form, fixed `Codex.ai` references, staged `.agents/` and `.codex/`.
-- Compared the site, deployed PDF, and new resume. Checked resume links and certificates.
-- Created `redesign-2027`, installed Playwright and Context7 (project scope), and fixed both `git-committer` trailers.
-- Built three throwaway design mockups outside the repo. Wrote the Direction A design doc.
-- Created `DungLe_Resume_Public.tex` beside the original resume (phone removed, certificate date and SAT wording fixed). The owner reports compiling it, but `DungLe_Resume_Public.pdf` is **not on this Mac, so nothing is published yet**.
-- Wrote the implementation plan.
+- Plan Tasks 0 to 2: resume PDF replaced on the branch, Next.js 16 and React 19 upgrade, design system, and `src/content/resume.ts`.
 
 ## Modified Files
-Nothing is committed or pushed.
-- Staged: `.agents/`, `.codex/` (new; `.codex/agents/git-committer.toml` has a further unstaged edit)
-- Unstaged: `.claude/agents/git-committer.md`, `CLAUDE.md`, `src/components/sections/Contact.tsx`
-- Untracked: `.claude/settings.json`, `AGENTS.md`, `docs/`
+Task 3 (Hero and Highlights) is next. Committed work is on `redesign-2027`; `main` is unchanged.
 
 ## Known Issues
-1. **Public resume update pending.** Run plan Task 0 when the owner's compiled PDF is available. Only publish a PDF built from `DungLe_Resume_Public.tex`.
-2. **Vulnerable dependencies.** `next@14.2.35` still leaves 26 Next.js advisories. A test lockfile with `next@16.4.6` and React 19 audits clean.
-3. **Resume conflicts.** The Claude Code certificate says March 25, 2026, but the resume says March 2025. "Significantly stronger" conflicts with interaction p=0.175. ~7.3 MW covers the top 10 buildings, not all 185.
-4. **Local settings are tracked.** `.claude/settings.local.json` is committed. It holds permissions only, and a keyword scan found no secrets.
-5. **CodePath image.** It is an admission graphic for "Applied AI Engineering", not a completion certificate. Label it accordingly.
-6. **Playwright MCP** loads only in a new Claude Code session. Headless Chrome is the fallback for screenshots.
+1. **Live site is still the old build.** `main` runs Next.js 14 with known advisories until this branch merges.
+2. **Resume PDF and site differ on two points.** The PDF says March 2025 and "significantly stronger." The site uses March 2026 and "not statistically significant."
+3. **Doubled skill path.** `.agents/skills/.agents/skills/web-design-guidelines/` likely belongs one level up.
+4. **Local settings are tracked.** `.claude/settings.local.json` holds permissions only.
+5. **Playwright MCP** loads only in a new Claude Code session. Headless Chrome is the fallback for screenshots.
 
 ## Immediate Next Steps
-1. Owner: save the compiled PDF as `/Users/lcd/Downloads/Resume/Resume 2027/DungLe_Resume_Public.pdf`. Then run plan Task 0.
-2. Owner: approve the plan and pick subagent-driven or native execution.
-3. Run plan Tasks 1 to 10 on `redesign-2027`. Merge to `main` only after preview review.
+1. Run plan Tasks 3 to 9 on `redesign-2027`, committing each with `git-committer`.
+2. Run Task 10: get owner confirmation before deleting legacy files, and merge to `main` only after preview review.

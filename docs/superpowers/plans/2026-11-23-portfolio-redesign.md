@@ -12,8 +12,8 @@
 
 ## Global Constraints
 
-- Every fact comes from `/Users/lcd/Downloads/Resume/Resume 2027/DungLe_Resume_Public.tex` or the spec's owner-confirmed list. Never invent metrics, projects, or skills.
-- No phone number in `src/`, `public/`, docs, commits, or published PDFs.
+- Every fact comes from `/Users/lcd/Downloads/Resume/Resume 2027/DungLe_Resume.tex` or the spec's owner-confirmed list. Never invent metrics, projects, or skills.
+- No phone number in `src/` or docs. `public/documents/dung-le-resume.pdf` is the owner's `DungLe_Resume.pdf`, unchanged.
 - SAT copy keeps r=0.701, r=0.572, and p=0.175, and says the difference was not statistically significant.
 - ~7.3 MW, ~$886K, and ~3,400 t CO2 always refer to the top 10 buildings.
 - Claude Code in Action is dated March 2026. The CodePath image is labeled as program admission.
@@ -47,17 +47,11 @@ Then run `npm run start` and use Playwright MCP (headless Chrome if unavailable)
 
 ---
 
-### Task 0: Update the public resume on `main` (blocked on owner file)
+### Task 0: Update the resume PDF
 
-Independent of the redesign. Do this as soon as `/Users/lcd/Downloads/Resume/Resume 2027/DungLe_Resume_Public.pdf` exists.
+**Files:** Modify `public/documents/dung-le-resume.pdf`.
 
-**Files:** Modify `public/documents/dung-le-resume.pdf` in a temporary worktree of `main`.
-
-- [ ] **Step 1: Verify the PDF.** Expected: one page, no phone-format text in extracted text or raw bytes, contains `March 2026`, `not significant`, `185 buildings`, `40+ students`, and does not contain `significantly stronger`.
-- [ ] **Step 2: Create a worktree.** Run `git worktree add <scratch>/hotfix main`, copy the PDF over the existing path, and run `npm ci`. Do not symlink `node_modules`.
-- [ ] **Step 3: Commit.** Dispatch `git-committer` in the worktree. Subject: `Update public resume`. Expected diff: that one PDF only.
-- [ ] **Step 4: Confirm live.** Poll `https://dungleportfolio.vercel.app/documents/dung-le-resume.pdf` until the ETag changes. Download it and repeat Step 1 on the downloaded file.
-- [ ] **Step 5: Clean up.** Run `git worktree remove <scratch>/hotfix`, then merge `main` into `redesign-2027`.
+- [x] **Step 1: Copy the owner's file.** Copy `/Users/lcd/Downloads/Resume/Resume 2027/DungLe_Resume.pdf` over it on `redesign-2027`. It goes live when the branch merges.
 
 ### Task 1: Baseline and framework upgrade
 
