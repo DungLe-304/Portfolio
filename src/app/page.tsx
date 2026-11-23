@@ -5,8 +5,7 @@ import Experience from "@/components/sections/Experience";
 import Skills from "@/components/sections/Skills";
 import Leadership from "@/components/sections/Leadership";
 import Projects from "@/components/sections/Projects";
-import Awards from "@/components/sections/Awards";
-import Certifications from "@/components/sections/Certifications";
+import Honors from "@/components/sections/Honors";
 import Contact from "@/components/sections/Contact";
 import { resume } from "@/content/resume";
 
@@ -21,8 +20,7 @@ export default function Home() {
         <Projects />
         <Skills />
         <Leadership />
-        <Awards />
-        <Certifications />
+        <Honors />
         <Contact />
       </main>
     </>

@@ -61,6 +61,7 @@ export interface Honor {
   detail?: string;
   links: ContentLink[];
   image?: ContentImage;
+  imageLabel?: string;
 }
 
 export interface Resume {
@@ -270,6 +271,7 @@ export const resume: Resume = {
         { label: "SyncShift on GitHub", href: "https://github.com/DungLe-304/TruHacks2026-Business" },
         { label: "Pitch deck", href: "/documents/syncshift-pitch-deck.pdf" },
       ],
+      imageLabel: "View photo",
       image: {
         src: "/images/awards/truhacks-2026.jpg",
         alt: "Dung Le standing in front of a projector screen that reads Third Place, Sync Shift.",
@@ -283,6 +285,7 @@ export const resume: Resume = {
       date: "Spring 2025",
       detail: "Recognized for a 4.0 grade point average for the semester.",
       links: [],
+      imageLabel: "View letter",
       image: {
         src: "/images/awards/presidents-list.png",
         alt: "Truman State University email announcing inclusion on the President's List for a 4.0 grade point average in the 2025 spring semester.",
@@ -295,6 +298,7 @@ export const resume: Resume = {
       issuer: "Anthropic",
       date: "March 2026",
       links: [{ label: "Verify certificate", href: "https://verify.skilljar.com/c/zraqd9ioaqor" }],
+      imageLabel: "View certificate",
       image: {
         src: "/images/certifications/claude-code-in-action.jpg",
         alt: "Anthropic certificate of completion for Claude Code in Action, issued to Dung Le.",
@@ -308,6 +312,7 @@ export const resume: Resume = {
       date: "May 2026",
       detail: "Program admission for CodePath's Applied AI Engineering course.",
       links: [],
+      imageLabel: "View admission",
       image: {
         src: "/images/certifications/codepath-applied-ai-engineering.jpg",
         alt: "CodePath admission graphic reading: Officially admitted. I'm an Emerging Engineer! Applied AI Engineering.",
