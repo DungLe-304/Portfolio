@@ -70,3 +70,10 @@
     transition: none;
   }
 }
+
+@media print {
+  .reveal-pending {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

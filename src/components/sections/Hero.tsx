@@ -13,7 +13,7 @@ export default function Hero() {
     >
       <h1
         id="hero-heading"
-        className="whitespace-nowrap font-display text-[clamp(4.25rem,15.2vw,13.5rem)] font-normal leading-[0.88] tracking-[-0.045em]"
+        className="whitespace-nowrap font-display text-[clamp(min(4.25rem,18.5vw),15.2vw,13.5rem)] font-normal leading-[0.88] tracking-[-0.045em]"
       >
         {name}
       </h1>

@@ -200,12 +200,12 @@ export const resume: Resume = {
       chart: {
         title: "SAT-graduation correlation (r)",
         summary:
-          "Correlation between SAT and graduation rate: public colleges r equals 0.701, private colleges r equals 0.572. The difference is not statistically significant, interaction p equals 0.175.",
+          "Correlation between SAT and graduation rate: public colleges r equals 0.701, private colleges r equals 0.572. The SAT by sector interaction is not statistically significant, p equals 0.175.",
         bars: [
           { label: "Public", value: 0.701 },
           { label: "Private", value: 0.572 },
         ],
-        note: "Difference not statistically significant (p=0.175)",
+        note: "SAT × sector interaction not statistically significant (p=0.175)",
       },
     },
   ],

@@ -93,10 +93,11 @@ Owner decisions (2026-11-23):
 - "Summer 2027" and "open to relocation" are correct. No graduation date was given, so omit it.
 
 ## Completed
-- Plan Tasks 0 to 2: resume PDF replaced on the branch, Next.js 16 and React 19 upgrade, design system, and `src/content/resume.ts`.
+- Plan Tasks 0 to 9: resume PDF, Next.js 16 and React 19 upgrade, design system, all page sections, SEO, accessibility, and performance.
+- Independent branch review completed, with important findings fixed.
 
 ## Modified Files
-Task 3 (Hero and Highlights) is next. Committed work is on `redesign-2027`; `main` is unchanged.
+Committed work is on `redesign-2027`; `main` is unchanged. Plan Task 10 is next.
 
 ## Known Issues
 1. **Live site is still the old build.** `main` runs Next.js 14 with known advisories until this branch merges.
@@ -106,5 +107,6 @@ Task 3 (Hero and Highlights) is next. Committed work is on `redesign-2027`; `mai
 5. **Playwright MCP** loads only in a new Claude Code session. Headless Chrome is the fallback for screenshots.
 
 ## Immediate Next Steps
-1. Run plan Tasks 3 to 9 on `redesign-2027`, committing each with `git-committer`.
-2. Run Task 10: get owner confirmation before deleting legacy files, and merge to `main` only after preview review.
+1. Owner: confirm the Task 10 deletion list and review the Vercel preview.
+2. After confirmation, remove legacy code and Framer Motion, refresh Part 1 of this file, and verify.
+3. Merge to `main` only after the owner approves the preview.

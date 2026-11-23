@@ -17,7 +17,9 @@ export default function ImageDialog({ image, triggerLabel, title }: ImageDialogP
   const titleId = useId();
   const [hasOpened, setHasOpened] = useState(false);
 
-  const open = () => {
+  const open = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey) return;
+    event.preventDefault();
     setHasOpened(true);
     dialogRef.current?.showModal();
   };
@@ -28,8 +30,8 @@ export default function ImageDialog({ image, triggerLabel, title }: ImageDialogP
 
   return (
     <>
-      <button
-        type="button"
+      <a
+        href={image.src}
         data-dialog-trigger
         aria-haspopup="dialog"
         aria-label={`${triggerLabel}: ${title}`}
@@ -37,7 +39,7 @@ export default function ImageDialog({ image, triggerLabel, title }: ImageDialogP
         className="inline-block py-2.5 leading-6 underline decoration-1 underline-offset-4 transition-colors hover:text-accent"
       >
         {triggerLabel}
-      </button>
+      </a>
 
       <dialog
         ref={dialogRef}

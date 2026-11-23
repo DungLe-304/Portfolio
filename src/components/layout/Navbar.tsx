@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import type { ContentLink } from "@/content/resume";
@@ -13,11 +13,14 @@ interface NavbarProps {
 
 export default function Navbar({ name, links, resumeLink }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!menuOpen) return;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key !== "Escape") return;
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
@@ -53,6 +56,7 @@ export default function Navbar({ name, links, resumeLink }: NavbarProps) {
           </a>
           <ThemeToggle />
           <button
+            ref={menuButtonRef}
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}
@@ -65,7 +69,7 @@ export default function Navbar({ name, links, resumeLink }: NavbarProps) {
         </div>
       </nav>
 
-      <ul id="mobile-menu" hidden={!menuOpen} className="border-t border-rule px-5 py-2 sm:px-8 md:hidden">
+      <ul id="mobile-menu" hidden={!menuOpen} className="max-h-[calc(100dvh-3.5rem)] overflow-y-auto border-t border-rule px-5 py-2 sm:px-8 md:hidden">
         {links.map((link) => (
           <li key={link.href}>
             <a
