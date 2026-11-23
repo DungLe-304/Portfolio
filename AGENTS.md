@@ -88,7 +88,7 @@ The 2027 portfolio redesign and its polish fixes are on `main`. Spec and plan ar
 
 Owner decisions (2026-11-23):
 - Publish the owner's `DungLe_Resume.pdf` unchanged at `/documents/dung-le-resume.pdf`. Site pages show no phone number.
-- Site copy dates the Claude Code certificate March 2026 and says the SAT difference was not statistically significant.
+- The resume and site both date the Claude Code certificate March 2026 and say the SAT difference was not significant.
 - Keep Walmart under "More projects," President's List, and SyncShift as the TruHacks link. Hide the Gemini certificate without deleting its files.
 - "Summer 2027" and "open to relocation" are correct. No graduation date was given, so omit it.
 
@@ -102,11 +102,9 @@ Owner decisions (2026-11-23):
 All work is committed on `main`. No work is in progress.
 
 ## Known Issues
-1. **Resume PDF and site differ on two points.** The PDF says March 2025 and "significantly stronger." The site uses March 2026 and "not statistically significant."
-2. **Browser coverage.** Automated checks ran in Chrome only. Safari and Firefox need a manual check.
-3. **Doubled skill path.** `.agents/skills/.agents/skills/web-design-guidelines/` likely belongs one level up.
-4. **Local settings are tracked.** `.claude/settings.local.json` holds permissions only.
+1. **Browser coverage.** Automated checks ran in Chrome only. Safari and Firefox need a manual check.
+2. **Doubled skill path.** `.agents/skills/.agents/skills/web-design-guidelines/` likely belongs one level up.
+3. **Local settings are tracked.** `.claude/settings.local.json` holds permissions only.
 
 ## Immediate Next Steps
 1. Owner: check the live site in Safari, and confirm the LinkedIn and RoofWatt demo links.
-2. Owner: decide whether to update the two resume lines, then replace the PDF.
