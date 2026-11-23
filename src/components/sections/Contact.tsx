@@ -1,37 +1,51 @@
-import { Mail, ExternalLink } from "lucide-react";
-import Section from "@/components/ui/Section";
+import { ArrowUpRight } from "lucide-react";
+import ReportSection from "@/components/ui/ReportSection";
 import Reveal from "@/components/ui/Reveal";
-import { site, contact } from "@/data/site";
+import { resume } from "@/content/resume";
 
-const links = [
-  { label: "Email", value: site.email, href: `mailto:${site.email}`, icon: Mail },
-  { label: "GitHub", value: site.github.replace(/^https?:\/\//, ""), href: site.github, icon: ExternalLink },
-  { label: "LinkedIn", value: site.linkedin.replace(/^https?:\/\//, ""), href: site.linkedin, icon: ExternalLink },
-];
+const displayValue = (href: string) => href.replace(/^mailto:/, "").replace(/^https:\/\/(www\.)?/, "");
 
 export default function Contact() {
+  const { availability, targetRoles, location, contact, contactHeading } = resume;
+
   return (
-    <Section id="contact" bg="ink" title="Let's connect." lead={contact.lead}>
-      <Reveal className="max-w-2xl">
-        <ul className="divide-y divide-white/15 border-t border-white/15">
-          {links.map(({ label, value, href, icon: Icon }) => (
-            <li key={label}>
-              <a
-                href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel="noopener noreferrer"
-                className="flex items-center gap-4 py-5 transition-opacity hover:opacity-70"
-              >
-                <Icon size={18} className="text-white/60" />
-                <div className="min-w-0">
-                  <p className="text-xs text-white/50">{label}</p>
-                  <p className="truncate text-base font-medium">{value}</p>
-                </div>
-              </a>
-            </li>
-          ))}
+    <ReportSection id="contact" label="Contact" title={contactHeading}>
+      <Reveal className="mt-8 grid gap-8 md:grid-cols-2 md:gap-12">
+        <p className="max-w-[30em] text-lg leading-relaxed text-muted">
+          {availability}: {targetRoles.join(", ")}.
+          <br />
+          {location}
+        </p>
+        <ul className="border-t border-rule">
+          {contact.map((link) => {
+            const isExternal = link.href.startsWith("http");
+            return (
+              <li key={link.href} className="border-b border-rule">
+                <a
+                  href={link.href}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
+                  className="group flex min-h-16 items-center justify-between gap-4 py-3 transition-colors hover:text-accent"
+                >
+                  <span className="min-w-0">
+                    <span className="block text-xs font-semibold uppercase tracking-[0.08em] text-muted">
+                      {link.label}
+                    </span>
+                    <span className="mt-0.5 block font-display text-xl [overflow-wrap:anywhere] md:text-2xl">
+                      {displayValue(link.href)}
+                    </span>
+                  </span>
+                  <ArrowUpRight
+                    size={18}
+                    aria-hidden="true"
+                    className="shrink-0 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </Reveal>
-    </Section>
+    </ReportSection>
   );
 }

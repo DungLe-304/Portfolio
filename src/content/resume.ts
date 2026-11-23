@@ -82,6 +82,7 @@ export interface Resume {
   leadership: Role[];
   honors: Honor[];
   education: { school: string; degree: string; gpa: string; period: string; location: string };
+  contactHeading: string;
   contact: ContentLink[];
   portrait: ContentImage;
   siteUrl: string;
@@ -328,6 +329,7 @@ export const resume: Resume = {
     period: "August 2024 – Present",
     location: "Kirksville, MO",
   },
+  contactHeading: "Let's connect.",
   contact: [
     { label: "Email", href: "mailto:lechidung204@gmail.com" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/dung-le430" },

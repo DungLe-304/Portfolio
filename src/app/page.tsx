@@ -1,12 +1,14 @@
+import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import Contact from "@/components/sections/Contact";
+import Education from "@/components/sections/Education";
+import Experience from "@/components/sections/Experience";
 import Hero from "@/components/sections/Hero";
 import Highlights from "@/components/sections/Highlights";
-import Experience from "@/components/sections/Experience";
-import Skills from "@/components/sections/Skills";
+import Honors from "@/components/sections/Honors";
 import Leadership from "@/components/sections/Leadership";
 import Projects from "@/components/sections/Projects";
-import Honors from "@/components/sections/Honors";
-import Contact from "@/components/sections/Contact";
+import Skills from "@/components/sections/Skills";
 import { resume } from "@/content/resume";
 
 export default function Home() {
@@ -21,8 +23,10 @@ export default function Home() {
         <Skills />
         <Leadership />
         <Honors />
+        <Education />
         <Contact />
       </main>
+      <Footer />
     </>
   );
 }
