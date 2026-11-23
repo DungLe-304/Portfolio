@@ -39,13 +39,9 @@ export default function Hero() {
             {location}
           </p>
           <ul className="flex flex-wrap gap-x-4 font-medium text-ink">
-            {actions.map((action, index) => (
+            {actions.map((action) => (
               <li key={action.href}>
-                <TextLink
-                  link={action}
-                  download={index === 0 ? "DungLe_Resume.pdf" : undefined}
-                  className={index === 0 ? "text-accent" : ""}
-                />
+                <TextLink link={action} className={action.download ? "text-accent" : ""} />
               </li>
             ))}
           </ul>

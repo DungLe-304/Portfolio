@@ -84,7 +84,7 @@ Read this before starting work. Before ending a session, overwrite the sections 
 Claude Code (`claude-fable-5-2`), 2026-11-23
 
 ## Current Objective
-The 2027 portfolio redesign is complete on `redesign-2027` and approved by the owner for merge to `main`. Spec and plan are in `docs/superpowers/`.
+The 2027 portfolio redesign is live on `main`. Five small polish fixes are on `redesign-2027`, awaiting owner approval to merge. Spec and plan are in `docs/superpowers/`.
 
 Owner decisions (2026-11-23):
 - Publish the owner's `DungLe_Resume.pdf` unchanged at `/documents/dung-le-resume.pdf`. Site pages show no phone number.
@@ -95,19 +95,19 @@ Owner decisions (2026-11-23):
 ## Completed
 - Upgraded the stack, rebuilt every section, added SEO assets, and removed legacy code and Framer Motion.
 - Independent branch review completed, with important findings fixed.
-- Lighthouse: mobile 94/100/100/100 and desktop 100/100/100/100 (Performance, Accessibility, Best Practices, SEO).
+- Live Lighthouse: 100 in all four categories on mobile and desktop.
+- Polish on `redesign-2027`: hash offset, nav landmark, live OS theme, toggle state, and an explicit resume link.
 
 ## Modified Files
-All redesign work is committed. No work is in progress.
+Polish changes are on `redesign-2027`; `main` has the prior release.
 
 ## Known Issues
 1. **Resume PDF and site differ on two points.** The PDF says March 2025 and "significantly stronger." The site uses March 2026 and "not statistically significant."
 2. **Browser coverage.** Automated checks ran in Chrome only. Safari and Firefox need a manual check.
-3. **Deferred polish.** Hash links show part of the previous section; the mobile menu sits outside the `nav` landmark; the theme ignores live OS changes; the toggle does not expose state; the first `resume.actions` item is assumed to be the resume.
-4. **Doubled skill path.** `.agents/skills/.agents/skills/web-design-guidelines/` likely belongs one level up.
-5. **Local settings are tracked.** `.claude/settings.local.json` holds permissions only.
+3. **Doubled skill path.** `.agents/skills/.agents/skills/web-design-guidelines/` likely belongs one level up.
+4. **Local settings are tracked.** `.claude/settings.local.json` holds permissions only.
 
 ## Immediate Next Steps
-1. Owner: check the live site in Safari, and confirm the LinkedIn and RoofWatt demo links.
-2. Owner: decide whether to update the two resume lines, then replace the PDF.
-3. Handle the deferred polish items if the owner wants them.
+1. Owner: approve merging the polish fixes from `redesign-2027` to `main`.
+2. Owner: check the live site in Safari, and confirm the LinkedIn and RoofWatt demo links.
+3. Owner: decide whether to update the two resume lines, then replace the PDF.

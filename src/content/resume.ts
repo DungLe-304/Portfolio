@@ -1,6 +1,7 @@
 export interface ContentLink {
   label: string;
   href: string;
+  download?: string;
 }
 
 export interface Stat {
@@ -73,6 +74,7 @@ export interface Resume {
   location: string;
   summary: string;
   nav: ContentLink[];
+  resumeLink: ContentLink;
   actions: ContentLink[];
   stats: Stat[];
   experience: Role[];
@@ -87,6 +89,12 @@ export interface Resume {
   portrait: ContentImage;
   siteUrl: string;
 }
+
+const resumeLink: ContentLink = {
+  label: "Resume (PDF)",
+  href: "/documents/dung-le-resume.pdf",
+  download: "DungLe_Resume.pdf",
+};
 
 export const resume: Resume = {
   name: "Dung C. Le",
@@ -104,8 +112,9 @@ export const resume: Resume = {
     { label: "Honors", href: "#honors" },
     { label: "Contact", href: "#contact" },
   ],
+  resumeLink,
   actions: [
-    { label: "Resume (PDF)", href: "/documents/dung-le-resume.pdf" },
+    resumeLink,
     { label: "GitHub", href: "https://github.com/DungLe-304" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/dung-le430" },
     { label: "Email", href: "mailto:lechidung204@gmail.com" },

@@ -14,7 +14,7 @@ import { resume } from "@/content/resume";
 export default function Home() {
   return (
     <>
-      <Navbar name={resume.name} links={resume.nav} resumeLink={resume.actions[0]} />
+      <Navbar name={resume.name} links={resume.nav} resumeLink={resume.resumeLink} />
       <main id="main">
         <Hero />
         <Highlights />

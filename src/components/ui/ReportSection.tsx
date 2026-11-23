@@ -16,7 +16,7 @@ export default function ReportSection({ id, label, aside, title, children }: Rep
     <section
       id={id}
       aria-labelledby={headingId}
-      className="mx-auto w-full max-w-[1320px] scroll-mt-20 px-5 py-14 sm:px-8 md:py-20 lg:px-14"
+      className="mx-auto w-full max-w-[1320px] px-5 py-14 sm:px-8 md:py-20 lg:px-14"
     >
       <div className="flex items-baseline justify-between gap-4 border-b border-t-[3px] border-b-rule border-t-ink py-2.5 text-xs uppercase tracking-[0.08em]">
         {title ? (
