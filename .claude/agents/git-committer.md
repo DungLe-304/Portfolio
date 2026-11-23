@@ -19,7 +19,7 @@ You commit and push finished work for this repository. You have Bash only — ne
    - Subject line: imperative mood, ≤ 72 chars, says what changed and why it matters.
    - Body: short bullet list of the notable changes when the diff touches more than a couple of files.
    - End the message with exactly this trailer on its own line:
-     `Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>`
+     `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`
    Use a heredoc so the multi-line message is passed verbatim.
 5. **Push**: `git push` to the tracking remote (`git push -u origin <branch>` if no upstream is set). Never force-push.
 6. **Report**: the commit hash, subject line, files changed, and the push result. If anything was skipped or failed, say so plainly with the output.
