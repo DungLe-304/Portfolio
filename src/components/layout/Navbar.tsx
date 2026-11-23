@@ -1,76 +1,93 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { navLinks, site } from "@/data/site";
+import ThemeToggle from "@/components/ui/ThemeToggle";
+import type { ContentLink } from "@/content/resume";
 
-export default function Navbar() {
+interface NavbarProps {
+  name: string;
+  links: ContentLink[];
+  resumeLink: ContentLink;
+}
+
+export default function Navbar({ name, links, resumeLink }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const handleNavClick = (href: string) => {
-    setMenuOpen(false);
-    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-  };
+    if (!menuOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 bg-white/80 backdrop-blur-xl transition-colors duration-300 ${
-        scrolled || menuOpen ? "border-b border-line" : "border-b border-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex h-12 max-w-5xl items-center justify-between px-6">
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="text-sm font-semibold tracking-tight"
-        >
-          {site.name}
-        </button>
+    <header className="sticky top-0 z-40 border-b border-ink bg-paper/90 backdrop-blur-md">
+      <nav
+        aria-label="Primary"
+        className="mx-auto flex h-14 w-full max-w-[1320px] items-center justify-between gap-5 px-5 text-[13px] sm:px-8 lg:px-14"
+      >
+        <a href="#top" className="inline-flex min-h-11 items-center font-semibold">
+          {name}
+        </a>
 
-        {/* Desktop links */}
-        <ul className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
+        <ul className="hidden items-center gap-6 md:flex">
+          {links.map((link) => (
             <li key={link.href}>
-              <button
-                onClick={() => handleNavClick(link.href)}
-                className="text-xs text-ink/80 transition-colors hover:text-ink"
-              >
+              <a href={link.href} className="inline-flex min-h-11 items-center transition-colors hover:text-accent">
                 {link.label}
-              </button>
+              </a>
             </li>
           ))}
         </ul>
 
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-          className="-mr-2 p-2 md:hidden"
-        >
-          {menuOpen ? <X size={18} /> : <Menu size={18} />}
-        </button>
+        <div className="-mr-2.5 flex items-center gap-1 md:mr-0">
+          <a
+            href={resumeLink.href}
+            download="DungLe_Resume.pdf"
+            className="hidden min-h-11 items-center px-2 font-medium text-accent underline-offset-4 hover:underline md:inline-flex"
+          >
+            Resume
+          </a>
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className="inline-flex h-11 w-11 items-center justify-center md:hidden"
+          >
+            {menuOpen ? <X size={19} aria-hidden="true" /> : <Menu size={19} aria-hidden="true" />}
+          </button>
+        </div>
       </nav>
 
-      {/* Mobile dropdown */}
-      {menuOpen && (
-        <ul className="px-6 py-3 md:hidden">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <button
-                onClick={() => handleNavClick(link.href)}
-                className="block w-full py-3 text-left text-base font-medium"
-              >
-                {link.label}
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul id="mobile-menu" hidden={!menuOpen} className="border-t border-rule px-5 py-2 sm:px-8 md:hidden">
+        {links.map((link) => (
+          <li key={link.href}>
+            <a
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="flex min-h-11 items-center font-display text-xl"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a
+            href={resumeLink.href}
+            download="DungLe_Resume.pdf"
+            onClick={() => setMenuOpen(false)}
+            className="flex min-h-11 items-center font-display text-xl text-accent"
+          >
+            {resumeLink.label}
+          </a>
+        </li>
+      </ul>
     </header>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useRef } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 interface RevealProps {
   children: ReactNode;
@@ -9,21 +9,33 @@ interface RevealProps {
   className?: string;
 }
 
-// Fade-in / slide-up once the element scrolls into view.
-export default function Reveal({ children, delay = 0, className }: RevealProps) {
-  const reduceMotion = useReducedMotion();
+// Fades in content below the fold. It renders visible, so it stays readable without JavaScript.
+export default function Reveal({ children, delay = 0, className = "" }: RevealProps) {
+  const ref = useRef<HTMLDivElement>(null);
 
-  if (reduceMotion) return <div className={className}>{children}</div>;
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (element.getBoundingClientRect().top < window.innerHeight) return;
+
+    element.classList.add("reveal-pending");
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      element.classList.remove("reveal-pending");
+      observer.disconnect();
+    });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
+    <div
+      ref={ref}
+      className={`reveal ${className}`.trim()}
+      style={{ "--reveal-delay": `${delay}s` } as CSSProperties}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
