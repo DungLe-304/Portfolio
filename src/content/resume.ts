@@ -4,10 +4,14 @@ export interface ContentLink {
   download?: string;
 }
 
+// Decorative glyph for a stat tile. "dots" draws exactly `count` units, with the first `highlight` in the accent color.
+export type StatGlyph = { kind: "wave" } | { kind: "tokens" } | { kind: "dots"; count: number; highlight?: number };
+
 export interface Stat {
   value: string;
   label: string;
   detail: string;
+  glyph?: StatGlyph;
 }
 
 export interface Role {
@@ -120,10 +124,10 @@ export const resume: Resume = {
     { label: "Email", href: "mailto:lechidung204@gmail.com" },
   ],
   stats: [
-    { value: "2,200+", label: "recordings auto-labeled", detail: "Binary classifier, VinSmart Future" },
-    { value: "200+", label: "calls benchmarked", detail: "Gipformer vs. Gemini ASR" },
-    { value: "185", label: "buildings analyzed", detail: "Top 10: ~7.3 MW of solar" },
-    { value: "40+", label: "students tutored", detail: "Precalculus through Calculus II" },
+    { value: "2,200+", label: "recordings auto-labeled", detail: "Binary classifier, VinSmart Future", glyph: { kind: "wave" } },
+    { value: "200+", label: "calls benchmarked", detail: "Gipformer vs. Gemini ASR", glyph: { kind: "tokens" } },
+    { value: "185", label: "buildings analyzed", detail: "Top 10: ~7.3 MW of solar", glyph: { kind: "dots", count: 185, highlight: 10 } },
+    { value: "40+", label: "students tutored", detail: "Precalculus through Calculus II", glyph: { kind: "dots", count: 40 } },
   ],
   experience: [
     {

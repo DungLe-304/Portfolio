@@ -81,11 +81,12 @@
   }
 }
 
+/* Border color is listed so hover states on revealed cells still animate. */
 .reveal {
   transition:
-    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: var(--reveal-delay, 0s);
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s),
+    border-color 250ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-pending {
