@@ -123,8 +123,7 @@ All work is committed on `main`. No work is in progress.
 ## Known Issues
 1. **Browser coverage.** Automated checks ran in Chromium only. Safari and Firefox need a manual check, especially the `::details-content` accordion animation, which falls back to an instant open.
 2. **Portrait.** The bright blue backdrop of `avatar.jpg` still clashes with the cream. A version with a neutral or removed background would help.
-3. **Doubled skill path.** `.agents/skills/.agents/skills/web-design-guidelines/` likely belongs one level up.
-4. **Local settings are tracked.** `.claude/settings.local.json` holds permissions only.
+3. **Local settings are tracked.** `.claude/settings.local.json` holds permissions only.
 
 ## Immediate Next Steps
 1. Owner: check the live site in Safari and Firefox.
