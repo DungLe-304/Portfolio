@@ -45,6 +45,7 @@ const config: Config = {
       },
       aspectRatio: {
         portrait: "4 / 5",
+        cover: "16 / 10",
       },
       borderRadius: {
         tag: "4px",
@@ -55,12 +56,24 @@ const config: Config = {
         lift: "0 18px 40px -24px rgb(var(--ink) / 0.45)",
         frame: "0 20px 40px -28px rgb(var(--ink) / 0.6)",
       },
+      scale: {
+        102: "1.02",
+      },
       // Warms the portrait's cool backdrop without turning it grayscale.
       sepia: {
         warm: "0.14",
       },
       saturate: {
         soft: "0.82",
+      },
+      keyframes: {
+        "fade-in": {
+          from: { opacity: "0", transform: "translateY(4px)" },
+          to: { opacity: "1", transform: "none" },
+        },
+      },
+      animation: {
+        "fade-in": "fade-in 200ms cubic-bezier(0.16, 1, 0.3, 1)",
       },
       transitionDuration: {
         DEFAULT: "200ms",

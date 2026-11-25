@@ -125,4 +125,10 @@
     opacity: 1 !important;
     transform: none !important;
   }
+
+  /* Tabbed panels print one after another, all visible. */
+  [data-tab-panel] {
+    display: block !important;
+    margin-bottom: 1rem;
+  }
 }

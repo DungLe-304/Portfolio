@@ -40,6 +40,12 @@ export interface BarChartData {
   note: string;
 }
 
+// Headline figures shown on a project card. Values and wording come from the project's results.
+export interface KeyResults {
+  figures: { value: string; label: string }[];
+  note: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -52,6 +58,7 @@ export interface Project {
   links: ContentLink[];
   image?: ContentImage;
   chart?: BarChartData;
+  keyResults?: KeyResults;
 }
 
 export interface SkillGroup {
@@ -180,6 +187,14 @@ export const resume: Resume = {
         "The top 10 represent ~7.3 MW of solar, ~$886K in annual savings, and ~3,400 t of CO₂ avoided per year.",
       ],
       stack: ["LangChain deepagents", "Gemini", "NREL PVWatts", "Streamlit", "pydeck"],
+      keyResults: {
+        figures: [
+          { value: "~7.3 MW", label: "of solar" },
+          { value: "~$886K", label: "in annual savings" },
+          { value: "~3,400 t", label: "of CO₂ avoided per year" },
+        ],
+        note: "Top 10 of the 185 buildings analyzed",
+      },
       links: [
         { label: "GitHub", href: "https://github.com/DungLe-304/roofwatt" },
         { label: "Live demo", href: "https://roofwatt.streamlit.app" },
