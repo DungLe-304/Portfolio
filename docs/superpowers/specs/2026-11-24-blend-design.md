@@ -30,7 +30,7 @@ CSS variables hold RGB triplets in `src/styles/globals.css`, exposed through `ta
 | `muted` | `#5b5248` | `#bdb1a1` | Secondary text (≥6.5:1 on paper) |
 | `rule` | `#ddd2c1` | `#3e352d` | Borders and grid lines |
 | `accent` | `#a14b2a` | `#e69a70` | Links, emphasis, focus (≥5:1 on paper and surface) |
-| `accent-soft` | `#f0dccd` | `#43302a` | Highlight fills |
+| `accent-soft` | `#f4e3d6` | `#43302a` | Highlight fills |
 | `on-accent` | `#ffffff` | `#1d120a` | Text on accent |
 | `chart` | `#c2b6a3` | `#645a4e` | Unit dots, decorative glyphs |
 | `live` | `#2f8a52` | `#6cc893` | The "currently" status dot |

@@ -1,26 +1,25 @@
 import ReportSection from "@/components/ui/ReportSection";
-import Reveal from "@/components/ui/Reveal";
 import { resume } from "@/content/resume";
 
-export default function Leadership() {
+interface LeadershipProps {
+  className?: string;
+}
+
+export default function Leadership({ className = "" }: LeadershipProps) {
   return (
-    <ReportSection index="05" id="leadership" label="Leadership">
-      <div className="grid md:grid-cols-2 md:gap-x-12">
-        {resume.leadership.map((role, index) => (
-          <Reveal key={role.title} delay={index * 0.06}>
-            <article className="h-full border-b border-rule py-7 md:border-b-0">
-              <p className="font-mono text-[13px] text-muted">{role.period}</p>
-              <h3 className="mt-2 font-display text-2xl font-normal leading-tight tracking-[-0.015em] md:text-[1.875rem]">
-                {role.title}
-              </h3>
-              <p className="mt-1 text-[15px] font-medium text-muted">{role.org}</p>
-              {role.bullets.map((bullet) => (
-                <p key={bullet} className="mt-4 max-w-[58ch] text-base leading-relaxed">
-                  {bullet}
-                </p>
-              ))}
-            </article>
-          </Reveal>
+    <ReportSection index="05" id="leadership" label="Leadership" variant="cell" className={className}>
+      <div className="grid gap-5 divide-y divide-rule md:grid-cols-2 md:gap-8 md:divide-y-0">
+        {resume.leadership.map((role) => (
+          <article key={role.title} className="pt-5 first:pt-0 md:pt-0">
+            <p className="font-mono text-xs text-muted">{role.period}</p>
+            <h3 className="mt-1.5 text-lg font-medium leading-snug">{role.title}</h3>
+            <p className="mt-0.5 text-sm font-medium text-muted">{role.org}</p>
+            {role.bullets.map((bullet) => (
+              <p key={bullet} className="mt-3 text-base leading-relaxed">
+                {bullet}
+              </p>
+            ))}
+          </article>
         ))}
       </div>
     </ReportSection>
