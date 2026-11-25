@@ -36,7 +36,6 @@ export default function SkillGrid({ groups, usage }: SkillGridProps) {
                   {linked ? (
                     <button
                       type="button"
-                      aria-pressed={active === item}
                       aria-controls="skill-usage"
                       onMouseEnter={() => setActive(item)}
                       onFocus={() => setActive(item)}

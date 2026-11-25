@@ -97,7 +97,7 @@ function FeatureCard({ project }: ProjectPartProps) {
             width={project.image.width}
             height={project.image.height}
             sizes="(min-width: 1200px) 580px, (min-width: 1024px) 48vw, 92vw"
-            className="h-full w-full object-cover object-left-top transition-transform duration-500 ease-out-soft group-hover:scale-102"
+            className="h-full w-full object-cover object-left-top transition-transform duration-slow ease-out-soft group-hover:scale-102"
           />
         </div>
       )}

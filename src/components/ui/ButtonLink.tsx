@@ -22,7 +22,7 @@ export default function ButtonLink({ link, variant = "secondary" }: ButtonLinkPr
       download={link.download}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
-      className={`group inline-flex min-h-11 items-center gap-2 rounded-full border px-5 text-sm font-medium transition duration-200 ease-out-soft hover:-translate-y-px ${variants[variant]}`}
+      className={`group inline-flex min-h-11 items-center gap-2 rounded-full border px-5 text-sm font-medium transition ease-out-soft hover:-translate-y-px ${variants[variant]}`}
     >
       {link.download && Icon && <Icon size={16} aria-hidden="true" />}
       {link.label}
@@ -30,7 +30,7 @@ export default function ButtonLink({ link, variant = "secondary" }: ButtonLinkPr
         <Icon
           size={15}
           aria-hidden="true"
-          className="text-muted transition-transform duration-200 group-hover:-translate-y-px group-hover:translate-x-px group-hover:text-current"
+          className="text-muted transition-transform group-hover:-translate-y-px group-hover:translate-x-px group-hover:text-current"
         />
       )}
     </a>

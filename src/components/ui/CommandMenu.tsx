@@ -27,7 +27,9 @@ function iconFor(link: ContentLink) {
 
 function run(link: ContentLink) {
   if (link.href.startsWith("#")) {
-    window.location.hash = link.href;
+    // Scroll directly so picking the section already in the URL hash still moves the page.
+    document.querySelector(link.href)?.scrollIntoView();
+    history.replaceState(null, "", link.href);
     return;
   }
   const anchor = document.createElement("a");
@@ -112,8 +114,7 @@ export default function CommandMenu({ sections, links }: CommandMenuProps) {
         type="button"
         onClick={open}
         aria-haspopup="dialog"
-        data-command-trigger
-        className="inline-flex h-9 items-center gap-2 rounded-control border border-rule bg-surface px-2.5 text-sm text-muted transition-colors duration-fast hover:border-accent hover:text-ink"
+        className="relative inline-flex h-9 items-center gap-2 rounded-control border border-rule bg-surface px-2.5 text-sm text-muted transition-colors duration-fast after:absolute after:-inset-1 hover:border-accent hover:text-ink"
       >
         <Search size={15} aria-hidden="true" />
         <span className="sr-only lg:not-sr-only">Jump to…</span>

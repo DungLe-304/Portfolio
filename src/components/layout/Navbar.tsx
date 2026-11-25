@@ -42,8 +42,8 @@ export default function Navbar({ name, links, resumeLink, sections, actions }: N
           <ul className="hidden items-center gap-6 md:flex lg:gap-7">
             {links.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="link-grow py-1 text-muted transition-colors duration-fast hover:text-ink">
-                  {link.label}
+                <a href={link.href} className="inline-flex min-h-11 items-center text-muted transition-colors duration-fast hover:text-ink">
+                  <span className="link-grow">{link.label}</span>
                 </a>
               </li>
             ))}
@@ -53,9 +53,9 @@ export default function Navbar({ name, links, resumeLink, sections, actions }: N
             <a
               href={resumeLink.href}
               download={resumeLink.download}
-              className="link-grow hidden py-1 font-medium text-accent md:inline-block"
+              className="hidden min-h-11 items-center font-medium text-accent md:inline-flex"
             >
-              Resume
+              <span className="link-grow">Resume</span>
             </a>
             <CommandMenu sections={sections} links={actions} />
             <ThemeToggle />

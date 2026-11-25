@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef, useState, useSyncExternalStore } from "react";
+import { useId, useRef, useState } from "react";
 import type { KeyboardEvent, ReactNode } from "react";
 
 export interface TabItem {
@@ -13,13 +13,11 @@ interface TabsProps {
   label: string;
 }
 
-const subscribe = () => () => {};
-
-// ARIA tabs with arrow-key, Home, and End support. Before hydration (and with JavaScript off)
-// every panel renders in order under its own label, so no content is hidden. Print styles in
-// globals.css show every panel again.
+// ARIA tabs with arrow-key, Home, and End support. The server renders the final tabbed markup, so
+// nothing shifts on hydration. Inactive panels are hidden only when the <html> element has the
+// "js" class (set before first paint). Without JavaScript, and in print, every panel shows under
+// its own label. See the tab rules in globals.css.
 export default function Tabs({ items, label }: TabsProps) {
-  const isClient = useSyncExternalStore(subscribe, () => true, () => false);
   const [active, setActive] = useState(0);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const baseId = useId();
@@ -38,22 +36,9 @@ export default function Tabs({ items, label }: TabsProps) {
     tabRefs.current[next]?.focus();
   };
 
-  if (!isClient) {
-    return (
-      <div className="grid gap-5">
-        {items.map((item) => (
-          <div key={item.label}>
-            <p className="mb-1.5 font-mono text-label uppercase text-accent">{item.label}</p>
-            {item.content}
-          </div>
-        ))}
-      </div>
-    );
-  }
-
   return (
     <div data-tabs>
-      <div role="tablist" aria-label={label} className="flex gap-1 border-b border-rule print:hidden">
+      <div role="tablist" aria-label={label} className="flex gap-1 border-b border-rule">
         {items.map((item, index) => {
           const selected = index === active;
           return (
@@ -89,11 +74,13 @@ export default function Tabs({ items, label }: TabsProps) {
               id={`${baseId}-panel-${index}`}
               aria-labelledby={`${baseId}-tab-${index}`}
               tabIndex={selected ? 0 : -1}
-              hidden={!selected}
               data-tab-panel
+              data-inactive={selected ? undefined : ""}
               className="animate-fade-in"
             >
-              <p className="mb-1.5 hidden font-mono text-label uppercase text-accent print:block">{item.label}</p>
+              <p data-tab-label className="mb-1.5 hidden font-mono text-label uppercase text-accent">
+                {item.label}
+              </p>
               {item.content}
             </div>
           );

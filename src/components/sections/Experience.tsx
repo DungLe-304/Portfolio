@@ -24,45 +24,35 @@ interface RoleCardProps {
   defaultOpen: boolean;
 }
 
-// Roles with several bullets collapse to their first bullet, using native <details> so the
-// accordion works with the keyboard and without JavaScript. Single-bullet roles stay static.
+// The title, org, and first bullet are always visible. Extra bullets sit in a native <details>
+// whose short summary is the only toggle, so it works with the keyboard and without JavaScript,
+// and screen readers keep the role heading. Single-bullet roles have no toggle.
 function RoleCard({ role, defaultOpen }: RoleCardProps) {
   const [first, ...rest] = role.bullets;
-  const cardClass = "rounded-card border border-rule bg-surface";
-
-  if (rest.length === 0) {
-    return (
-      <div className={`${cardClass} p-5`}>
-        <RoleHeader role={role} />
-        <p className="mt-3 max-w-prose text-base leading-relaxed">{first}</p>
-      </div>
-    );
-  }
 
   return (
-    <details
-      open={defaultOpen}
-      className={`group ${cardClass} transition-colors duration-slow hover:border-accent/60 open:border-ink/25`}
-    >
-      <summary className="block cursor-pointer list-none rounded-card p-5 [&::-webkit-details-marker]:hidden">
-        <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0">
-            <RoleHeader role={role} />
-          </div>
-          <span className="mt-0.5 inline-flex shrink-0 items-center gap-1.5 rounded-full border border-rule bg-paper py-1 pl-2.5 pr-2 font-mono text-label text-muted transition-colors duration-fast group-hover:border-accent group-hover:text-accent">
-            <span className="group-open:hidden">+{rest.length} more</span>
-            <span className="hidden group-open:inline">Less</span>
-            <Plus size={14} aria-hidden="true" className="transition-transform duration-slow group-open:rotate-45" />
-          </span>
-        </div>
-        <p className="mt-3 line-clamp-2 max-w-prose text-base leading-relaxed group-open:line-clamp-none">{first}</p>
-      </summary>
-      <ul className="max-w-prose list-disc space-y-3 px-5 pb-5 pl-10 text-base leading-relaxed marker:text-accent">
-        {rest.map((bullet) => (
-          <li key={bullet}>{bullet}</li>
-        ))}
-      </ul>
-    </details>
+    <div className="rounded-card border border-rule bg-surface p-5 transition-colors duration-slow hover:border-accent/60">
+      <RoleHeader role={role} />
+      <p className="mt-3 max-w-prose text-base leading-relaxed">{first}</p>
+      {rest.length > 0 && (
+        <details open={defaultOpen} className="group mt-3">
+          <summary className="inline-flex min-h-11 cursor-pointer list-none items-center [&::-webkit-details-marker]:hidden">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-rule bg-paper py-1 pl-2.5 pr-2 font-mono text-label text-muted transition-colors duration-fast group-hover:border-accent group-hover:text-accent">
+              <span className="group-open:hidden">
+                {rest.length} more {rest.length === 1 ? "detail" : "details"}
+              </span>
+              <span className="hidden group-open:inline">Fewer details</span>
+              <Plus size={14} aria-hidden="true" className="transition-transform duration-slow group-open:rotate-45" />
+            </span>
+          </summary>
+          <ul className="mt-2 max-w-prose list-disc space-y-3 pl-5 text-base leading-relaxed marker:text-accent">
+            {rest.map((bullet) => (
+              <li key={bullet}>{bullet}</li>
+            ))}
+          </ul>
+        </details>
+      )}
+    </div>
   );
 }
 

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 
 // Small original line drawings for section headers. Decorative only: they show no data.
-type GlyphName = "chart" | "timeline" | "path" | "nodes" | "laurel";
+type GlyphName = "chart" | "timeline" | "path" | "nodes";
 
 interface SectionGlyphProps {
   name: GlyphName;
@@ -43,14 +43,6 @@ const drawings: Record<GlyphName, ReactNode> = {
       <circle cx="56" cy="22" r="3" fill="currentColor" />
       <circle cx="34" cy="42" r="3" />
       <circle cx="70" cy="40" r="3" />
-    </>
-  ),
-  laurel: (
-    <>
-      <path d="M38 44V22" />
-      <path d="M38 40c-8-1-14-7-16-16M38 32c-6-1-10-5-12-11M38 40c8-1 14-7 16-16M38 32c6-1 10-5 12-11" opacity=".6" />
-      <circle cx="38" cy="14" r="6" />
-      <path d="M38 11v6M35 14h6" />
     </>
   ),
 };

@@ -59,7 +59,7 @@ There is no test runner. A change is verified when:
   - radius: `tag`, `control`, `card`
   - shadow: `lift`, `frame`
   - motion: `duration-fast`, `duration-slow`, `ease-out-soft`, `animate-fade-in`
-  
+
   Every text pair must stay at WCAG AA or better.
 - **Theme:** "Paper-first" design (spec: `docs/superpowers/specs/2026-11-24-blend-design.md`): warm cream with a charcoal-brown dark mode, applied through the `dark` class on `<html>`. Light is the default for everyone, and dark applies only after the visitor toggles it, with the choice saved.
 - **Images:** use `next/image`, with assets under `public/`.

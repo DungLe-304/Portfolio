@@ -28,8 +28,9 @@ const mono = Geist_Mono({
   display: "swap",
 });
 
-// Runs before first paint so a saved dark theme never flashes. Light is the default.
-const themeScript = `(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.classList.toggle("dark",t==="dark")})()`;
+// Runs before first paint: marks that JavaScript is on (tabs rely on it) and applies a saved dark
+// theme without a flash. Light is the default.
+const themeScript = `(function(){var r=document.documentElement,t;r.classList.add("js");try{t=localStorage.getItem("theme")}catch(e){}r.classList.toggle("dark",t==="dark")})()`;
 
 const title = `${resume.name} | Data Science Portfolio`;
 const description = `${resume.headline.join(" · ")}. ${resume.availability}: ${resume.targetRoles.join(", ")}.`;

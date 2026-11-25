@@ -100,6 +100,20 @@
   }
 }
 
+/* Tabs: inactive panels hide only once the "js" class is on <html>. Without JavaScript the
+   tablist is hidden and every panel shows under its own label. */
+.js [data-tab-panel][data-inactive] {
+  display: none;
+}
+
+html:not(.js) [data-tabs] [role="tablist"] {
+  display: none;
+}
+
+html:not(.js) [data-tab-label] {
+  display: block;
+}
+
 /* Border color is listed so hover states on revealed cells still animate. */
 .reveal {
   transition:
@@ -126,9 +140,24 @@
     transform: none !important;
   }
 
-  /* Tabbed panels print one after another, all visible. */
+  /* Tabbed panels print one after another, all visible, each under its label. */
+  [data-tabs] [role="tablist"] {
+    display: none !important;
+  }
+
   [data-tab-panel] {
     display: block !important;
     margin-bottom: 1rem;
+  }
+
+  [data-tab-label] {
+    display: block !important;
+  }
+
+  /* Collapsed accordions print fully, with or without JavaScript. */
+  details::details-content {
+    block-size: auto !important;
+    content-visibility: visible !important;
+    transition: none !important;
   }
 }
