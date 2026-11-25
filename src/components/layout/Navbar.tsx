@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
+import CommandMenu from "@/components/ui/CommandMenu";
 import Mark from "@/components/ui/Mark";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import type { ContentLink } from "@/content/resume";
@@ -10,9 +11,11 @@ interface NavbarProps {
   name: string;
   links: ContentLink[];
   resumeLink: ContentLink;
+  sections: ContentLink[];
+  actions: ContentLink[];
 }
 
-export default function Navbar({ name, links, resumeLink }: NavbarProps) {
+export default function Navbar({ name, links, resumeLink, sections, actions }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -36,7 +39,7 @@ export default function Navbar({ name, links, resumeLink }: NavbarProps) {
             {name}
           </a>
 
-          <ul className="hidden items-center gap-7 md:flex">
+          <ul className="hidden items-center gap-6 md:flex lg:gap-7">
             {links.map((link) => (
               <li key={link.href}>
                 <a href={link.href} className="link-grow py-1 text-muted transition-colors duration-fast hover:text-ink">
@@ -54,6 +57,7 @@ export default function Navbar({ name, links, resumeLink }: NavbarProps) {
             >
               Resume
             </a>
+            <CommandMenu sections={sections} links={actions} />
             <ThemeToggle />
             <button
               ref={menuButtonRef}

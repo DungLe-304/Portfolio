@@ -85,6 +85,7 @@ export interface Resume {
   location: string;
   summary: string;
   nav: ContentLink[];
+  sections: ContentLink[];
   resumeLink: ContentLink;
   actions: ContentLink[];
   stats: Stat[];
@@ -121,6 +122,17 @@ export const resume: Resume = {
     { label: "Projects", href: "#projects" },
     { label: "Skills", href: "#skills" },
     { label: "Honors", href: "#honors" },
+    { label: "Contact", href: "#contact" },
+  ],
+  // Every section anchor, in page order, for the command menu.
+  sections: [
+    { label: "Highlights", href: "#highlights" },
+    { label: "Experience", href: "#experience" },
+    { label: "Projects", href: "#projects" },
+    { label: "Skills", href: "#skills" },
+    { label: "Leadership", href: "#leadership" },
+    { label: "Honors & Certifications", href: "#honors" },
+    { label: "Education", href: "#education" },
     { label: "Contact", href: "#contact" },
   ],
   resumeLink,
