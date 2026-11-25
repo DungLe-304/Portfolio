@@ -112,12 +112,12 @@ export default function CommandMenu({ sections, links }: CommandMenuProps) {
         type="button"
         onClick={open}
         aria-haspopup="dialog"
-        aria-label="Open command menu"
+        data-command-trigger
         className="inline-flex h-9 items-center gap-2 rounded-control border border-rule bg-surface px-2.5 text-sm text-muted transition-colors duration-fast hover:border-accent hover:text-ink"
       >
         <Search size={15} aria-hidden="true" />
-        <span className="hidden lg:inline">Jump to…</span>
-        <kbd className="hidden rounded-tag border border-rule px-1 font-mono text-xs sm:inline">{isMac ? "⌘K" : "Ctrl K"}</kbd>
+        <span className="sr-only lg:not-sr-only">Jump to…</span>
+        <kbd aria-hidden="true" className="hidden rounded-tag border border-rule px-1 font-mono text-xs sm:inline">{isMac ? "⌘K" : "Ctrl K"}</kbd>
       </button>
 
       <dialog

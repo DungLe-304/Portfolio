@@ -11,7 +11,7 @@ The site is fully static: no API routes, database, or environment variables. It 
 ## Tech Stack
 - Next.js 16.4.6 (App Router), React 19, TypeScript 5.9 (`strict`)
 - Tailwind CSS 3.4, PostCSS, Autoprefixer
-- Lucide React 1.x, `next/font` (self-hosted Newsreader, Instrument Sans, IBM Plex Mono)
+- Lucide React 1.x, `next/font` (self-hosted Newsreader, Geist, Geist Mono)
 - ESLint 9 flat config with `eslint-config-next`
 - npm with `package-lock.json`; Next.js 16 needs Node 20.9+, and the version is not pinned
 
@@ -20,7 +20,8 @@ The site is fully static: no API routes, database, or environment variables. It 
 src/app/                 Root layout, metadata, page, sitemap, robots, icon, Open Graph image, fonts/
 src/components/layout/   Navbar, Footer
 src/components/sections/ Hero, Highlights, Experience, Projects, Skills, Leadership, Honors, Education, Contact
-src/components/ui/       ReportSection, Reveal, TextLink, BarChart, ImageDialog, ThemeToggle
+src/components/ui/       ReportSection, Reveal, ButtonLink, TextLink, Tabs, CountUp, StatGlyph, SectionGlyph,
+                         SkillGrid, CommandMenu, BarChart, ImageDialog, ThemeToggle, Mark, PrintExpand
 src/content/resume.ts    All typed site content
 src/styles/globals.css   Tailwind entry, theme variables, reveal and print styles
 src/types/               Ambient type declarations
@@ -49,10 +50,18 @@ There is no test runner. A change is verified when:
 ## Coding Conventions
 - **Content:** every fact comes from the owner's resume or an owner-confirmed item. Keep content in `src/content/resume.ts`, not in components.
 - **Components:** use TypeScript with explicit prop interfaces. Default to Server Components; add `"use client"` only when required.
-- **Sections:** wrap non-hero sections in `ui/ReportSection`. Use `ui/Reveal` for scroll motion; content must stay visible without JavaScript and in print.
+- **Sections:** wrap non-hero sections in `ui/ReportSection` (`variant="page"` for full sections, `"cell"` for the closing bento band). Use `ui/Reveal` for scroll motion. Content must stay visible without JavaScript and in print: tabs render every panel before hydration, and accordions use native `<details>` that open for print.
 - **Navigation:** anchors are `#highlights`, `#experience`, `#projects`, `#skills`, `#leadership`, `#honors`, `#education`, `#contact`. Nav links live in `resume.nav`.
-- **Styling:** prefer Tailwind utilities over `@apply`. Use theme tokens: `paper`, `surface`, `ink`, `muted`, `rule`, `accent`, `on-accent`, `chart`.
-- **Theme:** "Annual Report" editorial design with light and dark mode through the `dark` class on `<html>`. It follows the system until the visitor toggles it.
+- **Styling:** prefer Tailwind utilities over `@apply`. Use theme tokens only:
+  - colors: `paper`, `surface`, `ink`, `muted`, `rule`, `accent`, `accent-soft`, `on-accent`, `chart`, `live`
+  - type: `hero`, `title`, `card-title`, `item-title`, `stat`, `label`
+  - space: `cell`, `section`, `section-sm`
+  - radius: `tag`, `control`, `card`
+  - shadow: `lift`, `frame`
+  - motion: `duration-fast`, `duration-slow`, `ease-out-soft`, `animate-fade-in`
+  
+  Every text pair must stay at WCAG AA or better.
+- **Theme:** "Paper-first" design (spec: `docs/superpowers/specs/2026-11-24-blend-design.md`): warm cream with a charcoal-brown dark mode, applied through the `dark` class on `<html>`. Light is the default for everyone, and dark applies only after the visitor toggles it, with the choice saved.
 - **Images:** use `next/image`, with assets under `public/`.
 - **Imports:** `@/*` resolves to `src/*`.
 - **Language:** all text, comments, and documentation are in English.
@@ -81,33 +90,44 @@ When changing a skill or agent, update its counterpart in the same session.
 Read this before starting work. Before ending a session, overwrite the sections below so they describe the current state. Keep entries short, and leave history to git.
 
 ## Last Active Agent
-Claude Code (`claude-fable-5-2`), 2026-11-23
+Claude Code (`claude-opus-5-5`), 2026-11-24
 
 ## Current Objective
-The 2027 portfolio redesign and its polish fixes are on `main`. Spec and plan are in `docs/superpowers/`.
+The "Paper-first" redesign (V2 of the Vercel × Anthropic blend) is on branch `redesign/blend`, which has its own Vercel preview. The owner decides when to merge it into `main`.
 
-Owner decisions (2026-11-23):
-- Publish the owner's `DungLe_Resume.pdf` unchanged at `/documents/dung-le-resume.pdf`. Site pages show no phone number.
-- The resume and site both date the Claude Code certificate March 2026 and say the SAT difference was not significant.
-- Keep Walmart under "More projects," President's List, and SyncShift as the TruHacks link. Hide the Gemini certificate without deleting its files.
-- "Summer 2027" and "open to relocation" are correct. No graduation date was given, so omit it.
+Owner decisions (2026-11-24):
+- V2 Paper-first was picked over V1 Grid-first.
+- The site is light by default for everyone. Dark mode applies only after the visitor toggles it.
+- Visual changes only: every fact, number, link, and section stays.
 
 ## Completed
-- Upgraded the stack, rebuilt every section, added SEO assets, and removed legacy code and Framer Motion.
-- Independent branch review completed, with important findings fixed.
-- Live Lighthouse: 90+ in all four categories on mobile and desktop.
-- Polish: hash offset, nav landmark, live OS theme, toggle state, and an explicit resume link.
+- Reference brief, V1/V2 mockups, and design spec are in `docs/superpowers/`.
+- Tokens and fonts (Geist, Geist Mono, Newsreader).
+- Rebuilt sections:
+  - Navbar and hero
+  - Highlights bento with count-up
+  - Experience accordion timeline
+  - Projects bento with tabs
+  - Skills linked to project stacks
+  - Closing bento band
+  - ⌘K menu
+- Lighthouse on the local production build:
+  - mobile: 95 / 100 / 100 / 100
+  - desktop: 100 in all four categories
+  - CLS is 0 on both.
 
 ## Modified Files
-All work is committed on `main`. No work is in progress.
+All work is committed on `redesign/blend`. No work is in progress.
 
 ## Known Issues
-1. **Browser coverage.** Automated checks ran in Chrome only. Safari and Firefox need a manual check.
-2. **Doubled skill path.** `.agents/skills/.agents/skills/web-design-guidelines/` likely belongs one level up.
-3. **Local settings are tracked.** `.claude/settings.local.json` holds permissions only.
+1. **Browser coverage.** Automated checks ran in Chromium only. Safari and Firefox need a manual check, especially the `::details-content` accordion animation, which falls back to an instant open.
+2. **Portrait.** The bright blue backdrop of `avatar.jpg` still clashes with the cream. A version with a neutral or removed background would help.
+3. **Doubled skill path.** `.agents/skills/.agents/skills/web-design-guidelines/` likely belongs one level up.
+4. **Local settings are tracked.** `.claude/settings.local.json` holds permissions only.
 
 ## Immediate Next Steps
-1. Owner: check the live site in Safari, and confirm the LinkedIn and RoofWatt demo links.
+1. Owner: review the `redesign/blend` Vercel preview, then decide whether to merge into `main`.
+2. Owner: check Safari, and consider a new portrait photo.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

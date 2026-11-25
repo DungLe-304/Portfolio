@@ -18,15 +18,15 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "64px 72px",
-          background: "#f6f2e9",
-          color: "#1b1916",
+          background: "#f3ede2",
+          color: "#1f1b17",
         }}
       >
-        <div style={{ display: "flex", borderTop: "6px solid #1b1916", paddingTop: 18, fontSize: 24 }}>Portfolio</div>
+        <div style={{ display: "flex", borderTop: "2px solid #ddd2c1", paddingTop: 18, fontSize: 24 }}>Portfolio</div>
         <div style={{ display: "flex", fontSize: 148, letterSpacing: "-0.05em", lineHeight: 1 }}>{resume.name}</div>
         <div style={{ display: "flex", flexDirection: "column", fontSize: 36, lineHeight: 1.25 }}>
           <div style={{ display: "flex" }}>{school}</div>
-          <div style={{ display: "flex", color: "#a92e17" }}>{internship}</div>
+          <div style={{ display: "flex", color: "#a14b2a" }}>{internship}</div>
         </div>
       </div>
     ),
