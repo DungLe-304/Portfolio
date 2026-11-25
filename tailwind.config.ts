@@ -27,7 +27,7 @@ const config: Config = {
       },
       fontSize: {
         label: ["0.75rem", { lineHeight: "1rem", letterSpacing: "0.04em" }],
-        hero: ["clamp(2.5rem, 5.4vw, 4.6rem)", { lineHeight: "1.02", letterSpacing: "-0.025em" }],
+        hero: ["clamp(2.25rem, 4.6vw, 3.75rem)", { lineHeight: "1.04", letterSpacing: "-0.022em" }],
         title: ["clamp(2.125rem, 3.6vw, 2.75rem)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],
         "card-title": ["clamp(1.75rem, 2.6vw, 2.125rem)", { lineHeight: "1.08", letterSpacing: "-0.015em" }],
         "item-title": ["1.375rem", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
@@ -41,6 +41,10 @@ const config: Config = {
       maxWidth: {
         page: "75rem",
         prose: "65ch",
+        statement: "16em",
+      },
+      aspectRatio: {
+        portrait: "4 / 5",
       },
       borderRadius: {
         tag: "4px",
@@ -50,6 +54,13 @@ const config: Config = {
       boxShadow: {
         lift: "0 18px 40px -24px rgb(var(--ink) / 0.45)",
         frame: "0 20px 40px -28px rgb(var(--ink) / 0.6)",
+      },
+      // Warms the portrait's cool backdrop without turning it grayscale.
+      sepia: {
+        warm: "0.14",
+      },
+      saturate: {
+        soft: "0.82",
       },
       transitionDuration: {
         DEFAULT: "200ms",

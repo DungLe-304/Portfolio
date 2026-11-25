@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
+import Mark from "@/components/ui/Mark";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import type { ContentLink } from "@/content/resume";
 
@@ -27,28 +28,29 @@ export default function Navbar({ name, links, resumeLink }: NavbarProps) {
   }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-ink bg-paper/90 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-rule bg-paper/85 backdrop-blur-md">
       <nav aria-label="Primary">
-        <div className="mx-auto flex h-14 w-full max-w-[1320px] items-center justify-between gap-5 px-5 text-[13px] sm:px-8 lg:px-14">
-          <a href="#top" className="inline-flex min-h-11 items-center font-semibold">
+        <div className="mx-auto flex h-14 w-full max-w-page items-center justify-between gap-5 px-5 text-sm sm:px-8">
+          <a href="#top" className="group inline-flex min-h-11 items-center gap-2.5 font-semibold">
+            <Mark className="transition-transform duration-slow group-hover:-rotate-6" />
             {name}
           </a>
 
-          <ul className="hidden items-center gap-6 md:flex">
+          <ul className="hidden items-center gap-7 md:flex">
             {links.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="inline-flex min-h-11 items-center transition-colors hover:text-accent">
+                <a href={link.href} className="link-grow py-1 text-muted transition-colors duration-fast hover:text-ink">
                   {link.label}
                 </a>
               </li>
             ))}
           </ul>
 
-          <div className="-mr-2.5 flex items-center gap-1 md:mr-0">
+          <div className="-mr-1 flex items-center gap-2 md:mr-0">
             <a
               href={resumeLink.href}
               download={resumeLink.download}
-              className="hidden min-h-11 items-center px-2 font-medium text-accent underline-offset-4 hover:underline md:inline-flex"
+              className="link-grow hidden py-1 font-medium text-accent md:inline-block"
             >
               Resume
             </a>
@@ -77,7 +79,7 @@ export default function Navbar({ name, links, resumeLink }: NavbarProps) {
               <a
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="flex min-h-11 items-center font-display text-xl"
+                className="flex min-h-12 items-center border-b border-rule font-display text-2xl last:border-b-0"
               >
                 {link.label}
               </a>
@@ -88,7 +90,7 @@ export default function Navbar({ name, links, resumeLink }: NavbarProps) {
               href={resumeLink.href}
               download={resumeLink.download}
               onClick={() => setMenuOpen(false)}
-              className="flex min-h-11 items-center font-display text-xl text-accent"
+              className="flex min-h-12 items-center font-display text-2xl text-accent"
             >
               {resumeLink.label}
             </a>
