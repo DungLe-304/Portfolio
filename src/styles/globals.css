@@ -81,6 +81,25 @@
   }
 }
 
+/* Accordion height animation where the browser supports it; elsewhere details open instantly. */
+@supports selector(::details-content) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  details::details-content {
+    block-size: 0;
+    overflow: hidden;
+    transition:
+      block-size 250ms cubic-bezier(0.16, 1, 0.3, 1),
+      content-visibility 250ms allow-discrete;
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+  }
+}
+
 /* Border color is listed so hover states on revealed cells still animate. */
 .reveal {
   transition:

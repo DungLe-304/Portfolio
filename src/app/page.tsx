@@ -9,6 +9,7 @@ import Honors from "@/components/sections/Honors";
 import Leadership from "@/components/sections/Leadership";
 import Projects from "@/components/sections/Projects";
 import Skills from "@/components/sections/Skills";
+import PrintExpand from "@/components/ui/PrintExpand";
 import { resume } from "@/content/resume";
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <PrintExpand />
     </>
   );
 }
