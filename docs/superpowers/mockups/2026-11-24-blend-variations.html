@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mockup: blend variations</title>
+<!-- Mockup only. Production self-hosts these through next/font. -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  @font-face { font-family: "Newsreader"; src: url("../../../src/app/fonts/newsreader-normal.woff2") format("woff2"); font-style: normal; }
+  @font-face { font-family: "Newsreader"; src: url("../../../src/app/fonts/newsreader-italic.woff2") format("woff2"); font-style: italic; }
+
+  /* ---------- Tokens per variation and mode ---------- */
+  .v1 {
+    --paper: #f6f4ef; --surface: #fcfbf8; --ink: #17161a; --muted: #57544f; --line: #dfdbd2;
+    --accent: #a8431c; --accent-soft: #f3e3d9; --on-accent: #ffffff; --chart: #b9b2a6;
+    --serif: "Instrument Serif", Georgia, serif; --radius: 6px; --radius-lg: 8px;
+    --section-y: 64px; --cell-pad: 24px;
+  }
+  .v1[data-theme="dark"] {
+    --paper: #1b1815; --surface: #221e1a; --ink: #f2ede5; --muted: #b3aa9c; --line: #38322b;
+    --accent: #e8875a; --accent-soft: #3a2a20; --on-accent: #1b1208; --chart: #5d554b;
+  }
+  .v2 {
+    --paper: #f3ede2; --surface: #fbf7f0; --ink: #1f1b17; --muted: #5b5248; --line: #ddd2c1;
+    --accent: #a14b2a; --accent-soft: #f0dccd; --on-accent: #ffffff; --chart: #c2b6a3;
+    --serif: "Newsreader", Georgia, serif; --radius: 10px; --radius-lg: 14px;
+    --section-y: 96px; --cell-pad: 28px;
+  }
+  .v2[data-theme="dark"] {
+    --paper: #201b17; --surface: #2a241f; --ink: #f3ece2; --muted: #bdb1a1; --line: #3e352d;
+    --accent: #e69a70; --accent-soft: #43302a; --on-accent: #1d120a; --chart: #645a4e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { background: var(--paper); color: var(--ink); font: 16px/1.6 "Geist", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .mono { font-family: "Geist Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Nav ---------- */
+  .nav { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 16px; }
+  .nav-name { font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+  .nav-name .mark { width: 18px; height: 18px; }
+  .nav-links { display: flex; gap: 24px; font-size: 14px; color: var(--muted); }
+  .nav-links a { transition: color .15s; } .nav-links a:hover { color: var(--ink); }
+  .nav-right { display: flex; align-items: center; gap: 8px; }
+  .kbd { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border: 1px solid var(--line); border-radius: var(--radius); font-size: 12px; color: var(--muted); background: var(--surface); transition: border-color .15s, color .15s; }
+  .kbd:hover { border-color: var(--accent); color: var(--ink); }
+  .kbd b { font-weight: 500; border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; font-size: 11px; }
+
+  /* ---------- Buttons and links ---------- */
+  .btn { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 18px; border-radius: 999px; font-size: 15px; font-weight: 500; border: 1px solid var(--line); background: var(--surface); transition: border-color .18s, background .18s, transform .18s, box-shadow .18s; }
+  .btn:hover { border-color: var(--ink); transform: translateY(-1px); }
+  .btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .btn.primary:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .btn svg { width: 15px; height: 15px; }
+  .ulink { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .25s ease; padding-bottom: 1px; }
+  .ulink:hover { background-size: 100% 1px; }
+
+  /* ---------- Shared section label ---------- */
+  .label { font-family: "Geist Mono", monospace; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+  .label .idx { color: var(--accent); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: 72px 0 var(--section-y); }
+  .hero-grid { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: end; }
+  .chip { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px 0 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-size: 13px; }
+  .chip .dot { width: 8px; height: 8px; border-radius: 50%; background: #2f9e5a; box-shadow: 0 0 0 3px color-mix(in srgb, #2f9e5a 22%, transparent); }
+  .chip .k { color: var(--muted); }
+  .who { margin-top: 28px; font-size: 20px; font-weight: 500; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .who .aka { color: var(--muted); font-weight: 400; font-size: 16px; }
+  .statement { margin-top: 14px; font-family: var(--serif); font-weight: 400; font-size: clamp(2.4rem, 5.2vw, 4.4rem); line-height: 1.02; letter-spacing: -0.02em; max-width: 15em; }
+  .statement em { color: var(--accent); }
+  .roles { margin-top: 22px; color: var(--muted); font-size: 16px; max-width: 38em; }
+  .roles strong { color: var(--ink); font-weight: 500; }
+  .actions { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .portrait { position: relative; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); padding: 10px; }
+  .portrait img { display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: top; border-radius: calc(var(--radius-lg) - 4px); filter: saturate(.78) sepia(.14) brightness(1.02); }
+  .portrait figcaption { display: flex; justify-content: space-between; padding: 10px 4px 2px; font-size: 12px; color: var(--muted); }
+
+  /* ---------- Bento grid ---------- */
+  .section { padding: var(--section-y) 0; }
+  .section-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 28px; }
+  .section-title { font-size: 28px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; margin-top: 10px; }
+  .bento { display: grid; grid-template-columns: repeat(6, 1fr); }
+  .cell { position: relative; padding: var(--cell-pad); background: var(--surface); transition: background .2s, border-color .2s, transform .2s, box-shadow .2s; }
+  .stat .num { font-family: "Geist Mono", monospace; font-variant-numeric: tabular-nums; font-size: clamp(2.5rem, 4.4vw, 3.5rem); line-height: 1; letter-spacing: -0.05em; font-weight: 400; }
+  .stat .lbl { margin-top: 12px; font-size: 16px; font-weight: 500; }
+  .stat .det { margin-top: 4px; font-size: 14px; color: var(--muted); }
+  .stat .glyph { margin-top: 24px; color: var(--chart); }
+  .stat .glyph .hi { fill: var(--accent); }
+  .s-a { grid-column: span 3; } .s-b { grid-column: span 3; } .s-c { grid-column: span 4; } .s-d { grid-column: span 2; }
+  .dots { display: grid; gap: 4px; }
+  .dots i { display: block; aspect-ratio: 1; border-radius: 50%; background: var(--chart); }
+  .dots i.hi { background: var(--accent); }
+  .dots-185 { grid-template-columns: repeat(37, 1fr); max-width: 520px; }
+  .dots-40 { grid-template-columns: repeat(10, 1fr); max-width: 170px; }
+
+  /* ---------- Project card ---------- */
+  .proj { display: grid; grid-template-columns: 1.15fr 1fr; }
+  .proj .media { padding: 0; overflow: hidden; background: var(--paper); }
+  .proj .media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: left top; transition: transform .4s ease; }
+  .proj:hover .media img { transform: scale(1.02); }
+  .proj .meta { font-size: 13px; color: var(--muted); }
+  .proj h3 { margin-top: 8px; font-size: 26px; line-height: 1.15; font-weight: 500; letter-spacing: -0.02em; }
+  .kr { margin-top: 20px; display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); border-radius: var(--radius); }
+  .kr div { padding: 12px 14px; } .kr div + div { border-left: 1px solid var(--line); }
+  .kr b { display: block; font-family: "Geist Mono", monospace; font-weight: 500; font-size: 20px; letter-spacing: -0.03em; }
+  .kr span { font-size: 12px; color: var(--muted); }
+  .kr-cap { margin-top: 8px; font-size: 12px; color: var(--muted); }
+  .tabs { margin-top: 24px; display: flex; gap: 4px; border-bottom: 1px solid var(--line); }
+  .tab { position: relative; font: 500 14px "Geist", sans-serif; color: var(--muted); background: none; border: 0; padding: 10px 12px; cursor: pointer; transition: color .15s; }
+  .tab:hover { color: var(--ink); }
+  .tab[aria-selected="true"] { color: var(--ink); }
+  .tab[aria-selected="true"]::after { content: ""; position: absolute; left: 8px; right: 8px; bottom: -1px; height: 2px; background: var(--accent); }
+  .panel { padding-top: 16px; font-size: 15px; line-height: 1.65; min-height: 140px; animation: fade .2s ease; }
+  .panel ul { padding-left: 18px; }
+  @keyframes fade { from { opacity: 0; transform: translateY(4px); } }
+  .stack { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-family: "Geist Mono", monospace; font-size: 12px; padding: 3px 8px; border: 1px solid var(--line); border-radius: 4px; background: var(--paper); }
+  .plinks { margin-top: 20px; display: flex; gap: 18px; font-size: 14px; font-weight: 500; }
+  .plinks a { color: var(--accent); }
+
+  /* ---------- V1: grid-first ---------- */
+  .v1 .rails { border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
+  .v1 .bento, .v1 .proj { gap: 1px; background: var(--line); border: 1px solid var(--line); position: relative; }
+  .v1 .cell:hover { background: color-mix(in srgb, var(--surface) 70%, var(--accent-soft)); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent); }
+  .v1 .framed { position: relative; }
+  .v1 .x { position: absolute; width: 13px; height: 13px; color: var(--muted); z-index: 2; pointer-events: none; }
+  .v1 .x::before, .v1 .x::after { content: ""; position: absolute; background: currentColor; }
+  .v1 .x::before { left: 6px; top: 0; width: 1px; height: 13px; } .v1 .x::after { top: 6px; left: 0; height: 1px; width: 13px; }
+  .v1 .x.tl { left: -7px; top: -7px; } .v1 .x.tr { right: -7px; top: -7px; } .v1 .x.bl { left: -7px; bottom: -7px; } .v1 .x.br { right: -7px; bottom: -7px; }
+  .v1 .hero { border-bottom: 1px solid var(--line); background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 48px 48px; background-position: -1px -1px; }
+  .v1 .hero .hero-grid { background: var(--paper); padding: 32px; border: 1px solid var(--line); position: relative; }
+  .v1 .statement { font-size: clamp(2.4rem, 5vw, 4.25rem); }
+  .v1 .illus { display: none; }
+
+  /* ---------- V2: paper-first ---------- */
+  .v2 .bento, .v2 .proj { gap: 14px; }
+  .v2 .cell { border: 1px solid var(--line); border-radius: var(--radius-lg); }
+  .v2 .cell:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 14px 30px -18px color-mix(in srgb, var(--ink) 45%, transparent); }
+  .v2 .proj { gap: 0; border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; background: var(--surface); transition: transform .2s, border-color .2s, box-shadow .2s; }
+  .v2 .proj .cell { border: 0; border-radius: 0; } .v2 .proj .cell:hover { transform: none; box-shadow: none; }
+  .v2 .proj:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 18px 40px -24px color-mix(in srgb, var(--ink) 50%, transparent); }
+  .v2 .section-title { font-family: var(--serif); font-weight: 400; font-size: 44px; letter-spacing: -0.02em; }
+  .v2 .proj h3 { font-family: var(--serif); font-weight: 400; font-size: 34px; letter-spacing: -0.015em; line-height: 1.05; }
+  .v2 .statement { font-size: clamp(2.5rem, 5.4vw, 4.6rem); letter-spacing: -0.025em; }
+  .v2 .x { display: none; }
+  .v2 .illus { width: 76px; height: 48px; color: var(--accent); }
+  .v2 .portrait { transform: rotate(1.2deg); box-shadow: 0 20px 40px -28px color-mix(in srgb, var(--ink) 60%, transparent); }
+
+  /* ---------- Spec sheet ---------- */
+  .spec { border-top: 1px dashed var(--line); padding: 48px 0 80px; font-size: 14px; }
+  .spec h2 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+  .spec .sub { color: var(--muted); margin-bottom: 24px; }
+  .spec-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
+  .spec table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .spec th, .spec td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  .spec th { font-weight: 500; color: var(--muted); }
+  .sw { display: inline-block; width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--line); vertical-align: -2px; margin-right: 6px; }
+  .pass { color: #2f7d4c; } .v1[data-theme="dark"] .pass, .v2[data-theme="dark"] .pass { color: #7fcf9b; }
+  .fail { color: #b3261e; font-weight: 600; }
+  .spec dl { display: grid; grid-template-columns: 110px 1fr; gap: 8px 12px; }
+  .spec dt { color: var(--muted); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .portrait { max-width: 260px; order: -1; }
+    .nav-links { display: none; }
+    .proj { grid-template-columns: 1fr; }
+    .proj .media { aspect-ratio: 16/10; }
+    .spec-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px; }
+    .hero { padding-top: 40px; }
+    .v1 .hero .hero-grid { padding: 20px; }
+    .bento { grid-template-columns: repeat(2, 1fr); }
+    .s-a, .s-b, .s-c { grid-column: span 2; } .s-d { grid-column: span 2; }
+    .dots-185 { grid-template-columns: repeat(23, 1fr); }
+    .kr { grid-template-columns: 1fr; } .kr div + div { border-left: 0; border-top: 1px solid var(--line); }
+    .kbd .t { display: none; }
+    .v2 .section-title { font-size: 34px; }
+    .portrait { max-width: 168px; padding: 6px; } .portrait figcaption { display: none; }
+    .v2 .portrait { transform: rotate(1.5deg); }
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<template id="tpl">
+  <header class="nav">
+    <div class="wrap">
+      <a class="nav-name" href="#">
+        <svg class="mark" viewBox="0 0 18 18" aria-hidden="true"><rect x="1" y="1" width="16" height="16" rx="3" fill="none" stroke="currentColor"/><circle cx="6" cy="12" r="1.6" fill="currentColor"/><circle cx="9.5" cy="8.5" r="1.6" fill="currentColor"/><circle cx="13" cy="5" r="1.6" style="fill:var(--accent)"/></svg>
+        Dung C. Le
+      </a>
+      <nav class="nav-links"><a href="#">Experience</a><a href="#">Projects</a><a href="#">Skills</a><a href="#">Honors</a><a href="#">Contact</a></nav>
+      <div class="nav-right">
+        <button class="kbd" type="button"><span class="t">Jump to…</span><b>⌘K</b></button>
+        <button class="kbd" type="button" aria-label="Toggle theme">◐</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap rails">
+    <section class="hero">
+      <div class="hero-grid framed">
+        <span class="x tl"></span><span class="x tr"></span><span class="x bl"></span><span class="x br"></span>
+        <div>
+          <span class="chip"><span class="dot"></span><span class="k mono">Currently</span> Seeking Summer 2027 internships</span>
+          <p class="who">Dung C. Le <span class="aka">a.k.a. Tony Le</span></p>
+          <h1 class="statement">Data Science @ Truman State. <em>Former Data Analyst Intern @ VinSmart Future (Vingroup).</em></h1>
+          <p class="roles">Open to <strong>Data Analyst, Data Engineer, Data Scientist</strong> roles.<br /><span class="mono" style="font-size:13px">Kirksville, MO · Open to relocation</span></p>
+          <div class="actions">
+            <a class="btn primary" href="#"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m0 0L5 7m3 3 3-3M3 13h10"/></svg>Resume (PDF)</a>
+            <a class="btn" href="#">GitHub</a><a class="btn" href="#">LinkedIn</a><a class="btn" href="#">Email</a>
+          </div>
+        </div>
+        <figure class="portrait">
+          <img src="../../../public/images/avatar.jpg" alt="Portrait of Dung C. Le" />
+          <figcaption class="mono"><span>Kirksville, MO</span><span>B.S. Data Science</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <p class="label"><span class="idx">01</span> Highlights</p>
+          <h2 class="section-title">From the resume</h2>
+        </div>
+        <svg class="illus" viewBox="0 0 76 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M3 44h70"/><path d="M8 44V30M20 44V22M32 44V34M44 44V14M56 44V26M68 44V8" opacity=".55"/><path d="M6 36c10-4 18-16 28-14s16 10 24 2 10-16 14-20"/><circle cx="72" cy="4" r="2.2" fill="currentColor"/></svg>
+      </div>
+      <div class="framed">
+        <span class="x tl"></span><span class="x tr"></span><span class="x bl"></span><span class="x br"></span>
+        <dl class="bento">
+          <div class="cell stat s-a">
+            <dd class="num" data-count="2200" data-suffix="+">2,200+</dd>
+            <dt class="lbl">recordings auto-labeled</dt>
+            <dd class="det">Binary classifier, VinSmart Future</dd>
+            <svg class="glyph" viewBox="0 0 320 40" width="100%" height="40" preserveAspectRatio="xMinYMid meet" aria-hidden="true">
+              <g fill="currentColor"></g>
+            </svg>
+          </div>
+          <div class="cell stat s-b">
+            <dd class="num" data-count="200" data-suffix="+">200+</dd>
+            <dt class="lbl">calls benchmarked</dt>
+            <dd class="det">Gipformer vs. Gemini ASR</dd>
+            <svg class="glyph" viewBox="0 0 320 40" width="100%" height="40" preserveAspectRatio="xMinYMid meet" aria-hidden="true">
+              <text x="0" y="13" font-family="Geist Mono" font-size="10" fill="currentColor">A</text>
+              <text x="0" y="34" font-family="Geist Mono" font-size="10" fill="currentColor">B</text>
+              <g class="tok" fill="currentColor"></g>
+            </svg>
+          </div>
+          <div class="cell stat s-c">
+            <dd class="num" data-count="185">185</dd>
+            <dt class="lbl">buildings analyzed</dt>
+            <dd class="det">Top 10: ~7.3 MW of solar</dd>
+            <div class="glyph dots dots-185" aria-hidden="true"></div>
+          </div>
+          <div class="cell stat s-d">
+            <dd class="num" data-count="40" data-suffix="+">40+</dd>
+            <dt class="lbl">students tutored</dt>
+            <dd class="det">Precalculus through Calculus II</dd>
+            <div class="glyph dots dots-40" aria-hidden="true"></div>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0">
+      <div class="section-head">
+        <div>
+          <p class="label"><span class="idx">03</span> Projects</p>
+          <h2 class="section-title">Selected work</h2>
+        </div>
+        <svg class="illus" viewBox="0 0 76 48" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M6 42 30 12l18 18 22-24"/><circle cx="30" cy="12" r="3"/><circle cx="48" cy="30" r="3"/><circle cx="70" cy="6" r="3" fill="currentColor"/><path d="M4 46h68" opacity=".5"/></svg>
+      </div>
+      <div class="framed">
+        <span class="x tl"></span><span class="x tr"></span><span class="x bl"></span><span class="x br"></span>
+        <article class="proj">
+          <div class="cell media"><img src="../../../public/images/projects/roofwatt-overview.png" alt="RoofWatt overview" /></div>
+          <div class="cell">
+            <p class="meta mono">HackPrinceton · November 2026</p>
+            <h3>RoofWatt: AI Solar Lead Finder</h3>
+            <div class="kr">
+              <div><b>~7.3 MW</b><span>of solar</span></div>
+              <div><b>~$886K</b><span>annual savings</span></div>
+              <div><b>~3,400 t</b><span>CO₂ avoided / yr</span></div>
+            </div>
+            <p class="kr-cap mono">Top 10 of 185 buildings analyzed</p>
+            <div class="tabs" role="tablist">
+              <button class="tab" role="tab" aria-selected="true" data-p="0">Problem</button>
+              <button class="tab" role="tab" aria-selected="false" data-p="1">Approach</button>
+              <button class="tab" role="tab" aria-selected="false" data-p="2">Results</button>
+            </div>
+            <div class="panel" role="tabpanel"></div>
+            <div class="stack"><span class="tag">LangChain deepagents</span><span class="tag">Gemini</span><span class="tag">NREL PVWatts</span><span class="tag">Streamlit</span><span class="tag">pydeck</span></div>
+            <div class="plinks"><a class="ulink" href="#">GitHub ↗</a><a class="ulink" href="#">Live demo ↗</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <section class="spec">
+    <div class="wrap">
+      <h2 class="spec-name"></h2>
+      <p class="sub spec-sub"></p>
+      <div class="spec-grid">
+        <table><thead><tr><th>Token</th><th>Light</th><th>Dark</th><th>vs paper (L / D)</th></tr></thead><tbody class="pal"></tbody></table>
+        <dl class="facts"></dl>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  const v = params.get("v") === "2" ? "v2" : "v1";
+  const theme = params.get("theme") === "dark" ? "dark" : "light";
+  document.body.className = v;
+  document.body.dataset.theme = theme;
+  const root = document.getElementById("root");
+  root.appendChild(document.getElementById("tpl").content.cloneNode(true));
+
+  // Unit-count glyphs: exact counts, not invented data.
+  const fill = (sel, n, hi = 0) => { const el = root.querySelector(sel); for (let i = 0; i < n; i++) { const d = document.createElement("i"); if (i < hi) d.className = "hi"; el.appendChild(d); } };
+  fill(".dots-185", 185, 10);
+  fill(".dots-40", 40);
+  // Illustrative waveform for "recordings" (decorative, no values).
+  const wave = root.querySelector(".s-a .glyph g");
+  for (let i = 0; i < 80; i++) { const h = 6 + Math.abs(Math.sin(i * 0.37) * Math.cos(i * 0.11)) * 30; const r = document.createElementNS("http://www.w3.org/2000/svg", "rect"); r.setAttribute("x", i * 4); r.setAttribute("y", 20 - h / 2); r.setAttribute("width", 2); r.setAttribute("height", h); r.setAttribute("rx", 1); if (i === 52) r.setAttribute("class", "hi"); wave.appendChild(r); }
+  // Illustrative transcript tokens for two engines (decorative, no values).
+  const tok = root.querySelector(".s-b .tok");
+  [[10, 0], [31, 1]].forEach(([y, row]) => { let x = 16; const ws = row ? [22, 14, 30, 18, 26, 12, 34, 20, 16, 28, 18] : [18, 26, 12, 34, 20, 16, 28, 22, 14, 30, 20]; ws.forEach(w => { const r = document.createElementNS("http://www.w3.org/2000/svg", "rect"); r.setAttribute("x", x); r.setAttribute("y", y - 4); r.setAttribute("width", w); r.setAttribute("height", 6); r.setAttribute("rx", 3); tok.appendChild(r); x += w + 6; }); });
+
+  // Tabs with arrow keys.
+  const panels = [
+    "<p>Which Houston commercial rooftops make the strongest solar leads, ranked by payback?</p>",
+    "<p>Co-built an AI agent (LangChain deepagents, Gemini) that screens commercial buildings using CoStar property data and Vexcel aerial imagery, ranks rooftops by solar payback, and drafts proposals to building owners. Built the data pipeline, roof-area and financial models (NREL PVWatts energy output, savings, payback, CO₂ avoided), and a Streamlit/pydeck map.</p>",
+    "<ul><li>Analyzed 185 buildings.</li><li>The top 10 represent ~7.3 MW of solar, ~$886K in annual savings, and ~3,400 t of CO₂ avoided per year.</li></ul>",
+  ];
+  const tabs = [...root.querySelectorAll(".tab")]; const panel = root.querySelector(".panel");
+  const select = (i) => { tabs.forEach((t, j) => { t.setAttribute("aria-selected", i === j); t.tabIndex = i === j ? 0 : -1; }); panel.innerHTML = panels[i]; panel.style.animation = "none"; panel.offsetHeight; panel.style.animation = ""; };
+  tabs.forEach((t, i) => { t.addEventListener("click", () => select(i)); t.addEventListener("keydown", (e) => { const d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0; if (!d) return; const n = (i + d + tabs.length) % tabs.length; select(n); tabs[n].focus(); }); });
+  select(params.has("tab") ? +params.get("tab") : 0);
+
+  // Count-up (skipped under reduced motion or for static screenshots).
+  if (!params.has("static") && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    root.querySelectorAll("[data-count]").forEach((el) => { const end = +el.dataset.count, suf = el.dataset.suffix || "", t0 = performance.now(); const step = (t) => { const p = Math.min(1, (t - t0) / 900), e = 1 - Math.pow(1 - p, 3); el.textContent = Math.round(end * e).toLocaleString("en-US") + suf; if (p < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); });
+  }
+
+  // Spec sheet with measured WCAG contrast.
+  const specs = {
+    v1: { name: "V1 · Grid-first (closer to Vercel)", sub: "Visible 1px grid with corner crosshairs, Geist for nearly everything, serif only in the hero statement, tight radii, glow on hover.",
+      fonts: "Instrument Serif (hero statement only) · Geist 400/500/600 (UI, body) · Geist Mono 400/500 (labels, dates, numbers)",
+      spacing: "4px base: 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96. Cell padding 24, section 64.", radius: "4 (tags) · 6 (controls) · 8 (frames) · pill buttons",
+      motion: "150–250ms: cell glow, underline grow, tab fade, 900ms count-up once." },
+    v2: { name: "V2 · Paper-first (closer to Anthropic)", sub: "Warmer cream, grid only inside bento sections, Newsreader for statements and section headlines, soft radii, lift on hover, small line illustrations.",
+      fonts: "Newsreader 400 + italic (hero, section and project titles) · Geist 400/500/600 (UI, body) · Geist Mono 400/500 (labels, dates, numbers)",
+      spacing: "4px base: 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 · 96 · 128. Cell padding 28, section 96.", radius: "4 (tags) · 10 (controls) · 14 (cards) · pill buttons",
+      motion: "180–250ms: card lift + accent border, underline grow, tab fade, 900ms count-up once." },
+  };
+  const read = (mode) => { const b = document.body; const prev = b.dataset.theme; b.dataset.theme = mode; const cs = getComputedStyle(b); const o = {}; ["paper","surface","ink","muted","line","accent","accent-soft","on-accent","chart"].forEach(k => o[k] = cs.getPropertyValue("--" + k).trim()); b.dataset.theme = prev; return o; };
+  const lum = (hex) => { const c = hex.replace("#", "").match(/../g).map(h => parseInt(h, 16) / 255).map(x => x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4)); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
+  const cr = (a, b) => { const [x, y] = [lum(a), lum(b)].sort((m, n) => n - m); return (x + 0.05) / (y + 0.05); };
+  const L = read("light"), D = read("dark");
+  const need = { ink: 4.5, muted: 4.5, accent: 4.5, line: 0, chart: 0, surface: 0, "accent-soft": 0, "on-accent": 0, paper: 0 };
+  const fmt = (r, n) => n ? `<span class="${r >= n ? "pass" : "fail"}">${r.toFixed(2)}</span>` : `<span style="color:var(--muted)">${r.toFixed(2)}</span>`;
+  const rows = Object.keys(L).map(k => {
+    let l = cr(L[k], L.paper), d = cr(D[k], D.paper);
+    if (k === "on-accent") { l = cr(L[k], L.accent); d = cr(D[k], D.accent); }
+    const n = k === "on-accent" ? 4.5 : need[k];
+    return `<tr><td class="mono">${k}${k === "on-accent" ? " <small>(vs accent)</small>" : ""}</td><td><span class="sw" style="background:${L[k]}"></span><span class="mono">${L[k]}</span></td><td><span class="sw" style="background:${D[k]}"></span><span class="mono">${D[k]}</span></td><td class="mono">${k === "paper" ? "—" : fmt(l, n) + " / " + fmt(d, n)}</td></tr>`;
+  });
+  rows.push(`<tr><td class="mono">accent on surface</td><td colspan="2" style="color:var(--muted)">links inside cells</td><td class="mono">${fmt(cr(L.accent, L.surface), 4.5)} / ${fmt(cr(D.accent, D.surface), 4.5)}</td></tr>`);
+  rows.push(`<tr><td class="mono">muted on surface</td><td colspan="2" style="color:var(--muted)">secondary text in cells</td><td class="mono">${fmt(cr(L.muted, L.surface), 4.5)} / ${fmt(cr(D.muted, D.surface), 4.5)}</td></tr>`);
+  root.querySelector(".pal").innerHTML = rows.join("");
+  const s = specs[v];
+  root.querySelector(".spec-name").textContent = s.name;
+  root.querySelector(".spec-sub").textContent = s.sub;
+  root.querySelector(".facts").innerHTML = `<dt>Fonts</dt><dd>${s.fonts}</dd><dt>Spacing</dt><dd>${s.spacing}</dd><dt>Radius</dt><dd>${s.radius}</dd><dt>Motion</dt><dd>${s.motion}</dd><dt>Dark mode</dt><dd>Charcoal brown, not black. Light is the default; dark only when toggled and saved.</dd>`;
+</script>
+</body>
+</html>

@@ -2,29 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Color tokens as RGB triplets. Spec: docs/superpowers/specs/2026-11-24-blend-design.md */
 @layer base {
   :root {
     color-scheme: light;
-    --paper: 246 242 233;
-    --surface: 239 233 220;
-    --ink: 27 25 22;
-    --muted: 95 90 80;
-    --rule: 213 205 188;
-    --accent: 169 46 23;
+    --paper: 243 237 226;
+    --surface: 251 247 240;
+    --ink: 31 27 23;
+    --muted: 91 82 72;
+    --rule: 221 210 193;
+    --accent: 161 75 42;
+    --accent-soft: 240 220 205;
     --on-accent: 255 255 255;
-    --chart: 139 131 115;
+    --chart: 194 182 163;
+    --live: 47 138 82;
   }
 
   .dark {
     color-scheme: dark;
-    --paper: 23 21 18;
-    --surface: 33 30 25;
-    --ink: 242 237 227;
-    --muted: 170 163 149;
-    --rule: 58 53 45;
-    --accent: 240 121 92;
-    --on-accent: 27 18 8;
-    --chart: 118 111 98;
+    --paper: 32 27 23;
+    --surface: 42 36 31;
+    --ink: 243 236 226;
+    --muted: 189 177 161;
+    --rule: 62 53 45;
+    --accent: 230 154 112;
+    --accent-soft: 67 48 42;
+    --on-accent: 29 18 10;
+    --chart: 100 90 78;
+    --live: 108 200 147;
   }
 
   html {
@@ -49,19 +54,43 @@
     html {
       scroll-behavior: auto;
     }
+
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+}
+
+@layer components {
+  /* Underline that grows from the left on hover and keyboard focus. */
+  .link-grow {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    transition: background-size 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .link-grow:hover,
+  .link-grow:focus-visible {
+    background-size: 100% 1px;
   }
 }
 
 .reveal {
   transition:
-    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--reveal-delay, 0s);
 }
 
 .reveal-pending {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(12px);
   transition: none;
 }
 

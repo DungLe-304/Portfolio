@@ -4,7 +4,7 @@ import { resume } from "@/content/resume";
 
 export default function Highlights() {
   return (
-    <ReportSection id="highlights" label="Highlights" aside="From the resume">
+    <ReportSection index="01" id="highlights" label="Highlights" aside="From the resume">
       <Reveal>
         <dl className="grid grid-cols-1 md:grid-cols-2 md:gap-x-12 min-[1180px]:grid-cols-4 min-[1180px]:gap-x-8">
           {resume.stats.map((stat) => (

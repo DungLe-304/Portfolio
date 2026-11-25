@@ -4,7 +4,7 @@ import { resume } from "@/content/resume";
 
 export default function Leadership() {
   return (
-    <ReportSection id="leadership" label="Leadership">
+    <ReportSection index="05" id="leadership" label="Leadership">
       <div className="grid md:grid-cols-2 md:gap-x-12">
         {resume.leadership.map((role, index) => (
           <Reveal key={role.title} delay={index * 0.06}>

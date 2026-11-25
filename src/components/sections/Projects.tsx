@@ -141,7 +141,7 @@ function CompactProject({ project }: CompactProjectProps) {
 
 export default function Projects() {
   return (
-    <ReportSection id="projects" label="Projects" aside="Case studies">
+    <ReportSection index="03" id="projects" label="Projects" aside="Case studies">
       {resume.projects.map((project) => (
         <CaseStudy key={project.slug} project={project} />
       ))}

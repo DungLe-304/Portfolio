@@ -6,7 +6,7 @@ export default function Education() {
   const { school, degree, gpa, period, location } = resume.education;
 
   return (
-    <ReportSection id="education" label="Education">
+    <ReportSection index="07" id="education" label="Education">
       <Reveal>
         <div className="grid gap-2 border-b border-rule py-6 md:grid-cols-[232px_minmax(0,1fr)] md:gap-0 lg:grid-cols-[232px_minmax(0,1fr)_auto]">
           <p className="font-mono text-[13px] leading-6 text-muted md:pt-1">{period}</p>

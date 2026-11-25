@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { resume } from "@/content/resume";
 import "@/styles/globals.css";
 
-// Single-weight Newsreader cuts keep the hero font small. License: src/app/fonts/OFL.txt
+// Single-weight Newsreader cuts keep the display font small. License: src/app/fonts/OFL.txt
 const display = localFont({
   src: [
     { path: "./fonts/newsreader-normal.woff2", weight: "400", style: "normal" },
@@ -16,21 +16,20 @@ const display = localFont({
   adjustFontFallback: "Times New Roman",
 });
 
-const body = Instrument_Sans({
+const body = Geist({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
 });
 
-const mono = IBM_Plex_Mono({
+const mono = Geist_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
   variable: "--font-mono",
   display: "swap",
 });
 
-// Runs before first paint so the saved or system theme never flashes.
-const themeScript = `(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}var d=t==="dark"||(t!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d)})()`;
+// Runs before first paint so a saved dark theme never flashes. Light is the default.
+const themeScript = `(function(){var t;try{t=localStorage.getItem("theme")}catch(e){}document.documentElement.classList.toggle("dark",t==="dark")})()`;
 
 const title = `${resume.name} | Data Science Portfolio`;
 const description = `${resume.headline.join(" · ")}. ${resume.availability}: ${resume.targetRoles.join(", ")}.`;
@@ -56,10 +55,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f6f2e9" },
-    { media: "(prefers-color-scheme: dark)", color: "#171512" },
-  ],
+  themeColor: "#f3ede2",
 };
 
 export default function RootLayout({

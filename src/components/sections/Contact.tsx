@@ -9,7 +9,7 @@ export default function Contact() {
   const { availability, targetRoles, location, contact, contactHeading } = resume;
 
   return (
-    <ReportSection id="contact" label="Contact" title={contactHeading}>
+    <ReportSection index="08" id="contact" label="Contact" title={contactHeading}>
       <Reveal className="mt-8 grid gap-8 md:grid-cols-2 md:gap-12">
         <p className="max-w-[30em] text-lg leading-relaxed text-muted">
           {availability}: {targetRoles.join(", ")}.

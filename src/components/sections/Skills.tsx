@@ -4,7 +4,7 @@ import { resume } from "@/content/resume";
 
 export default function Skills() {
   return (
-    <ReportSection id="skills" label="Skills">
+    <ReportSection index="04" id="skills" label="Skills">
       <Reveal>
         {resume.skills.map((group) => (
           <div

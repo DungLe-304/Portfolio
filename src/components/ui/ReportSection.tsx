@@ -2,40 +2,43 @@ import type { ReactNode } from "react";
 
 interface ReportSectionProps {
   id: string;
+  index: string;
   label: string;
   aside?: string;
   title?: string;
+  glyph?: ReactNode;
+  className?: string;
   children: ReactNode;
 }
 
-export default function ReportSection({ id, label, aside, title, children }: ReportSectionProps) {
+// Section shell: a mono index kicker, a serif heading, and an optional line glyph on the right.
+export default function ReportSection({ id, index, label, aside, title, glyph, className = "", children }: ReportSectionProps) {
   const headingId = `${id}-heading`;
-  const labelClass = "font-semibold";
+  const kicker = title ? label : aside;
 
   return (
     <section
       id={id}
       aria-labelledby={headingId}
-      className="mx-auto w-full max-w-[1320px] px-5 py-14 sm:px-8 md:py-20 lg:px-14"
+      className={`mx-auto w-full max-w-page px-5 py-section-sm sm:px-8 md:py-section ${className}`.trim()}
     >
-      <div className="flex items-baseline justify-between gap-4 border-b border-t-[3px] border-b-rule border-t-ink py-2.5 text-xs uppercase tracking-[0.08em]">
-        {title ? (
-          <p className={labelClass}>{label}</p>
-        ) : (
-          <h2 id={headingId} className={labelClass}>
-            {label}
+      <div className="mb-8 flex items-end justify-between gap-6 md:mb-10">
+        <div>
+          <p className="flex items-center gap-3 font-mono text-label uppercase text-muted">
+            <span className="text-accent">{index}</span>
+            <span aria-hidden="true" className="h-px w-6 bg-rule" />
+            {kicker && <span>{kicker}</span>}
+          </p>
+          <h2 id={headingId} className="mt-3 font-display text-title font-normal">
+            {title ?? label}
           </h2>
+        </div>
+        {glyph && (
+          <div aria-hidden="true" className="hidden shrink-0 text-accent sm:block">
+            {glyph}
+          </div>
         )}
-        {aside && <span className="text-right font-semibold">{aside}</span>}
       </div>
-      {title && (
-        <h2
-          id={headingId}
-          className="mt-7 max-w-[15em] font-display text-[2.125rem] font-normal leading-[1.02] tracking-[-0.03em] md:text-5xl lg:text-[4rem]"
-        >
-          {title}
-        </h2>
-      )}
       {children}
     </section>
   );

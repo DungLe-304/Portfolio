@@ -6,7 +6,7 @@ import { resume } from "@/content/resume";
 
 export default function Honors() {
   return (
-    <ReportSection id="honors" label="Honors & Certifications">
+    <ReportSection index="06" id="honors" label="Honors & Certifications">
       <Reveal>
         {resume.honors.map((honor) => (
           <article

@@ -4,7 +4,7 @@ import { resume } from "@/content/resume";
 
 export default function Experience() {
   return (
-    <ReportSection id="experience" label="Experience">
+    <ReportSection index="02" id="experience" label="Experience">
       <ol className="mt-8 md:mt-10">
         {resume.experience.map((role) => (
           <li
