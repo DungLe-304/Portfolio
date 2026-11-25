@@ -4,10 +4,14 @@ export interface ContentLink {
   download?: string;
 }
 
+// Decorative glyph for a stat tile. "dots" draws exactly `count` units, with the first `highlight` in the accent color.
+export type StatGlyph = { kind: "wave" } | { kind: "tokens" } | { kind: "dots"; count: number; highlight?: number };
+
 export interface Stat {
   value: string;
   label: string;
   detail: string;
+  glyph?: StatGlyph;
 }
 
 export interface Role {
@@ -36,6 +40,12 @@ export interface BarChartData {
   note: string;
 }
 
+// Headline figures shown on a project card. Values and wording come from the project's results.
+export interface KeyResults {
+  figures: { value: string; label: string }[];
+  note: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -48,6 +58,7 @@ export interface Project {
   links: ContentLink[];
   image?: ContentImage;
   chart?: BarChartData;
+  keyResults?: KeyResults;
 }
 
 export interface SkillGroup {
@@ -74,6 +85,7 @@ export interface Resume {
   location: string;
   summary: string;
   nav: ContentLink[];
+  sections: ContentLink[];
   resumeLink: ContentLink;
   actions: ContentLink[];
   stats: Stat[];
@@ -112,6 +124,17 @@ export const resume: Resume = {
     { label: "Honors", href: "#honors" },
     { label: "Contact", href: "#contact" },
   ],
+  // Every section anchor, in page order, for the command menu.
+  sections: [
+    { label: "Highlights", href: "#highlights" },
+    { label: "Experience", href: "#experience" },
+    { label: "Projects", href: "#projects" },
+    { label: "Skills", href: "#skills" },
+    { label: "Leadership", href: "#leadership" },
+    { label: "Honors & Certifications", href: "#honors" },
+    { label: "Education", href: "#education" },
+    { label: "Contact", href: "#contact" },
+  ],
   resumeLink,
   actions: [
     resumeLink,
@@ -120,10 +143,10 @@ export const resume: Resume = {
     { label: "Email", href: "mailto:lechidung204@gmail.com" },
   ],
   stats: [
-    { value: "2,200+", label: "recordings auto-labeled", detail: "Binary classifier, VinSmart Future" },
-    { value: "200+", label: "calls benchmarked", detail: "Gipformer vs. Gemini ASR" },
-    { value: "185", label: "buildings analyzed", detail: "Top 10: ~7.3 MW of solar" },
-    { value: "40+", label: "students tutored", detail: "Precalculus through Calculus II" },
+    { value: "2,200+", label: "recordings auto-labeled", detail: "Binary classifier, VinSmart Future", glyph: { kind: "wave" } },
+    { value: "200+", label: "calls benchmarked", detail: "Gipformer vs. Gemini ASR", glyph: { kind: "tokens" } },
+    { value: "185", label: "buildings analyzed", detail: "Top 10: ~7.3 MW of solar", glyph: { kind: "dots", count: 185, highlight: 10 } },
+    { value: "40+", label: "students tutored", detail: "Precalculus through Calculus II", glyph: { kind: "dots", count: 40 } },
   ],
   experience: [
     {
@@ -176,6 +199,14 @@ export const resume: Resume = {
         "The top 10 represent ~7.3 MW of solar, ~$886K in annual savings, and ~3,400 t of CO₂ avoided per year.",
       ],
       stack: ["LangChain deepagents", "Gemini", "NREL PVWatts", "Streamlit", "pydeck"],
+      keyResults: {
+        figures: [
+          { value: "~7.3 MW", label: "of solar" },
+          { value: "~$886K", label: "in annual savings" },
+          { value: "~3,400 t", label: "of CO₂ avoided per year" },
+        ],
+        note: "Top 10 of the 185 buildings analyzed",
+      },
       links: [
         { label: "GitHub", href: "https://github.com/DungLe-304/roofwatt" },
         { label: "Live demo", href: "https://roofwatt.streamlit.app" },

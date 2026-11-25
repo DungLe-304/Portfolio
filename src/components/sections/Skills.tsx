@@ -1,26 +1,29 @@
 import ReportSection from "@/components/ui/ReportSection";
 import Reveal from "@/components/ui/Reveal";
+import SectionGlyph from "@/components/ui/SectionGlyph";
+import SkillGrid from "@/components/ui/SkillGrid";
+import type { SkillUse } from "@/components/ui/SkillGrid";
 import { resume } from "@/content/resume";
+
+// Maps each skill to the projects whose stack lists it by exact name. No fuzzy matching,
+// so a skill links only where the resume itself pairs them.
+function buildUsage(): Record<string, SkillUse[]> {
+  const projects = [...resume.projects, ...resume.moreProjects];
+  const usage: Record<string, SkillUse[]> = {};
+  for (const group of resume.skills) {
+    for (const skill of group.items) {
+      const uses = projects.filter((project) => project.stack.includes(skill));
+      if (uses.length > 0) usage[skill] = uses.map(({ slug, title }) => ({ slug, title }));
+    }
+  }
+  return usage;
+}
 
 export default function Skills() {
   return (
-    <ReportSection id="skills" label="Skills">
+    <ReportSection index="04" id="skills" label="Skills" glyph={<SectionGlyph name="nodes" />}>
       <Reveal>
-        {resume.skills.map((group) => (
-          <div
-            key={group.name}
-            className="grid gap-3 border-b border-rule py-5 md:grid-cols-[232px_1fr] md:items-baseline md:gap-0 md:py-6"
-          >
-            <h3 className="font-display text-xl font-normal tracking-[-0.01em] md:text-2xl">{group.name}</h3>
-            <ul className="flex flex-wrap gap-2">
-              {group.items.map((item) => (
-                <li key={item} className="border border-rule bg-surface px-2.5 py-1 font-mono text-[13px] leading-5">
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        <SkillGrid groups={resume.skills} usage={buildUsage()} />
       </Reveal>
     </ReportSection>
   );
