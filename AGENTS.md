@@ -93,7 +93,7 @@ Read this before starting work. Before ending a session, overwrite the sections 
 Claude Code (`claude-opus-5-5`), 2026-11-24
 
 ## Current Objective
-The "Paper-first" redesign (V2 of the Vercel × Anthropic blend) is on branch `redesign/blend`, which has its own Vercel preview. The owner decides when to merge it into `main`.
+The "Paper-first" redesign (V2 of the Vercel × Anthropic blend) is live. It was merged into `main` through PR #1 (merge commit `9436d4e`), and the `redesign/blend` branch has been deleted.
 
 Owner decisions (2026-11-24):
 - V2 Paper-first was picked over V1 Grid-first.
@@ -111,13 +111,14 @@ Owner decisions (2026-11-24):
   - Skills linked to project stacks
   - Closing bento band
   - ⌘K menu
+- Production deploy of `9436d4e` succeeded on Vercel.
 - Lighthouse on the local production build:
   - mobile: 95 / 100 / 100 / 100
   - desktop: 100 in all four categories
   - CLS is 0 on both.
 
 ## Modified Files
-All work is committed on `redesign/blend`. No work is in progress.
+All work is committed on `main`. No work is in progress.
 
 ## Known Issues
 1. **Browser coverage.** Automated checks ran in Chromium only. Safari and Firefox need a manual check, especially the `::details-content` accordion animation, which falls back to an instant open.
@@ -126,8 +127,8 @@ All work is committed on `redesign/blend`. No work is in progress.
 4. **Local settings are tracked.** `.claude/settings.local.json` holds permissions only.
 
 ## Immediate Next Steps
-1. Owner: review the `redesign/blend` Vercel preview, then decide whether to merge into `main`.
-2. Owner: check Safari, and consider a new portrait photo.
+1. Owner: check the live site in Safari and Firefox.
+2. Owner: consider a portrait with a neutral or removed background.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
